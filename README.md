@@ -2,6 +2,7 @@
 
 [![npm version](https://badge.fury.io/js/mui-rhf-integration.svg)](https://badge.fury.io/js/mui-rhf-integration)
 [![Release](https://github.com/dasprid/mui-rhf-integration/actions/workflows/release.yml/badge.svg)](https://github.com/dasprid/mui-rhf-integration/actions/workflows/release.yml)
+[![codecov](https://codecov.io/gh/DASPRiD/mui-rhf-integration/branch/main/graph/badge.svg?token=eS8Jz0gfPX)](https://codecov.io/gh/DASPRiD/mui-rhf-integration)
 
 This is a lightweight integration library for [MUI](https://mui.com/) and
 [React Hook Form](https://react-hook-form.com/) with the two goals of being strictly typed with proper generic
