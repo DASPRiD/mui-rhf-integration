@@ -1,0 +1,68 @@
+{
+  "name": "mui-rhf-integration",
+  "version": "1.0.0",
+  "description": "React Hook Form integration for MUI with strict TypeScript handling based on form context.",
+  "keywords": [
+    "react",
+    "mui",
+    "rhf",
+    "react hook form",
+    "typescript"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dasprid/mui-rhf-integration.git"
+  },
+  "author": "Ben Scholzen 'DASPRiD'",
+  "license": "MIT",
+  "scripts": {
+    "test": "jest test --coverage",
+    "lint": "eslint src test",
+    "build": "tsc",
+    "prepare": "husky install"
+  },
+  "files": [
+    "dist/**/*"
+  ],
+  "module": "./dist/index.js",
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "types": "./dist/index.d.ts",
+  "peerDependencies": {
+    "@mui/material": "^5.5.0",
+    "@mui/x-date-pickers": "^5.0.0-alpha.0",
+    "react": "^17.0.0",
+    "react-hook-form": "^7.29.0"
+  },
+  "peerDependenciesMeta": {
+    "@mui/x-date-pickers": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^16.2.3",
+    "@commitlint/config-conventional": "^16.2.1",
+    "@date-io/date-fns": "^2.13.1",
+    "@emotion/styled": "^11.8.1",
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "^12.1.5",
+    "@testing-library/user-event": "^14.1.1",
+    "@tsconfig/vite-react": "^1.0.0",
+    "@types/jest": "^27.4.1",
+    "@types/react": "^17.0.43",
+    "date-fns": "^2.28.0",
+    "eslint": "^8.12.0",
+    "eslint-config-dasprid": "^0.1.12",
+    "eslint-plugin-react": "^7.29.4",
+    "husky": "^7.0.4",
+    "jest": "^27.5.1",
+    "lint-staged": "^12.3.7",
+    "react-dom": "^17.0.2",
+    "ts-jest": "^27.1.4",
+    "typescript": "^4.6.3"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": "eslint --cache --fix"
+  }
+}
