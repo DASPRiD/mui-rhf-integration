@@ -51,7 +51,13 @@ const RhfTimePicker = <
                         error={Boolean(fieldState.error)}
                         onBlur={field.onBlur}
                         helperText={fieldState.error?.message ?? textFieldProps?.helperText}
-                        inputRef={field.ref}
+                        inputRef={ref => {
+                            if (params.inputRef instanceof Function) {
+                                params.inputRef(ref as HTMLInputElement);
+                            }
+
+                            field.ref(ref);
+                        }}
                     />
                 )}
             />
