@@ -10,7 +10,7 @@ import type {RegisterOptions} from 'react-hook-form/dist/types/validator';
 export type RhfTimePickerProps<
     TFieldValues extends FieldValues = FieldValues,
     TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
-> = Omit<TimePickerProps, 'error' | 'onChange' | 'value' | 'renderInput'> & {
+> = Omit<TimePickerProps<unknown, unknown>, 'error' | 'onChange' | 'value' | 'renderInput'> & {
     control : Control<TFieldValues>;
     name : TName;
     rules ?: Omit<RegisterOptions<TFieldValues, TName>, 'valueAsNumber' | 'valueAsDate' | 'setValueAs' | 'disabled'>;
