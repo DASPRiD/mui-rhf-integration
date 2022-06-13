@@ -48,7 +48,7 @@ const RhfDatePicker = <
                     <TextField
                         {...textFieldProps}
                         {...params}
-                        error={fieldState.invalid}
+                        error={Boolean(fieldState.error)}
                         onBlur={field.onBlur}
                         helperText={fieldState.error?.message ?? textFieldProps?.helperText}
                         inputRef={field.ref}

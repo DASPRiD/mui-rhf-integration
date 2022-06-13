@@ -30,7 +30,7 @@ const RhfTextField = <
     return (
         <TextField
             {...rest}
-            error={fieldState.invalid}
+            error={Boolean(fieldState.error)}
             onChange={field.onChange}
             onBlur={field.onBlur}
             value={value}
