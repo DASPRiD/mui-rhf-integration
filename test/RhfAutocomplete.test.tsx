@@ -19,6 +19,30 @@ const initTest = createInitTest<
     ]} {...props}/>
 ));
 
+type Entity = {
+    id : string;
+    label : string;
+};
+
+const entityOptions = [
+    {id: '1', label: 'foo'},
+    {id: '2', label: 'bar'},
+];
+
+const initEntitySingleTest = createInitTest<
+    Omit<RhfAutocompleteProps<Entity, false, false, false>, 'name' | 'control' | 'options'>,
+    TestFormValues
+>((control, props) => (
+    <RhfAutocomplete control={control} name="foo" options={entityOptions} {...props}/>
+));
+
+const initEntityMultipleTest = createInitTest<
+    Omit<RhfAutocompleteProps<Entity, true, false, false>, 'name' | 'control' | 'options'>,
+    TestFormValues
+>((control, props) => (
+    <RhfAutocomplete control={control} name="foo" options={entityOptions} {...props}/>
+));
+
 describe('RhfAutocomplete', () => {
     it('should treat undefined as empty value', () => {
         initTest({
@@ -68,6 +92,51 @@ describe('RhfAutocomplete', () => {
         await user.keyboard('{Enter}');
 
         expect(form.getValues().foo).toBe('bar');
+    });
+
+    it('should handle single value transformation', async () => {
+        const form = initEntitySingleTest({
+            textFieldProps: {
+                label: 'Test field',
+            },
+            optionToValue: option => option.id,
+            valueToOption: value => entityOptions.find(option => option.id === value),
+        }, {
+            foo: '1',
+        });
+
+        expect(screen.getByLabelText('Test field')).toHaveValue('foo');
+
+        const user = userEvent.setup();
+        await user.click(screen.getByLabelText('Test field'));
+        await user.keyboard('bar');
+        await user.keyboard('{ArrowDown}');
+        await user.keyboard('{Enter}');
+
+        expect(form.getValues().foo).toBe('2');
+    });
+
+    it('should handle multiple value transformation', async () => {
+        const form = initEntityMultipleTest({
+            textFieldProps: {
+                label: 'Test field',
+            },
+            optionToValue: option => option.id,
+            valueToOption: value => entityOptions.find(option => option.id === value),
+            multiple: true,
+        }, {
+            foo: ['1'],
+        });
+
+        expect(screen.getByLabelText('Test field').parentNode).toHaveTextContent('foo');
+
+        const user = userEvent.setup();
+        await user.click(screen.getByLabelText('Test field'));
+        await user.keyboard('bar');
+        await user.keyboard('{ArrowDown}');
+        await user.keyboard('{Enter}');
+
+        expect(form.getValues().foo).toEqual(['1', '2']);
     });
 
     it('should display helper text without error', () => {

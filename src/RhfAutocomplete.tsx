@@ -20,6 +20,8 @@ export type RhfAutocompleteProps<
     name : TName;
     rules ?: Omit<RegisterOptions<TFieldValues, TName>, 'valueAsNumber' | 'valueAsDate' | 'setValueAs' | 'disabled'>;
     textFieldProps ?: Omit<TextFieldProps, 'error' | 'onChange' | 'onBlur' | 'value' | 'inputRef'>;
+    valueToOption ?: (value : unknown) => T | undefined | null;
+    optionToValue ?: (option : T) => unknown;
 };
 
 const RhfAutocomplete = <
@@ -34,6 +36,9 @@ const RhfAutocomplete = <
     name,
     rules,
     textFieldProps,
+    multiple,
+    valueToOption,
+    optionToValue,
     ...rest
 } : RhfAutocompleteProps<
     T,
@@ -48,12 +53,43 @@ const RhfAutocomplete = <
 
     if (value === undefined) {
         value = null;
+    } else if (value && valueToOption) {
+        if (multiple) {
+            /* istanbul ignore next */
+            if (!Array.isArray(value)) {
+                console.warn('Received a non-array value for a multiple Autocomplete');
+                value = [];
+            }
+
+            value = (value as unknown[]).map(valueToOption);
+        } else if (!multiple) {
+            value = valueToOption(value);
+        }
     }
 
     return (
         <Autocomplete
-            onChange={field.onChange}
+            onChange={(event, value) => {
+                if (!optionToValue || !(value as unknown)) {
+                    field.onChange(value);
+                    return;
+                }
+
+                if (!multiple) {
+                    field.onChange(optionToValue(value as T));
+                    return;
+                }
+
+                if (Array.isArray(value)) {
+                    field.onChange(value.map(optionToValue));
+                    return;
+                }
+
+                /* istanbul ignore next */
+                console.warn('Autocomplete is set to multiple but value is an not array');
+            }}
             value={value as AutocompleteValue<T, Multiple, DisableClearable, FreeSolo>}
+            multiple={multiple}
             renderInput={params => (
                 <TextField
                     {...textFieldProps}

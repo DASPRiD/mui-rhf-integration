@@ -186,6 +186,9 @@ are `null`, `undefined` and the value type defined by the autocomplete options.
 />
 ```
 
+Additionally, it accepts the two properties `valueToOption` and `optionToValue`, which are used when you need to map
+e.g. objects to IDs and vice versa for your form values.
+
 ### `RhfDatePicker`
 
 Wrapper around the `DatePicker` component. Passes all known `DatePickerProps` properties down.
