@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/dasprid/mui-rhf-integration/compare/v1.0.1...v1.1.0) (2022-06-25)
+
+
+### Features
+
+* **RhfAutocomplete:** allow transforming between options and form values ([2458a17](https://github.com/dasprid/mui-rhf-integration/commit/2458a17786d056ca8524364570f39926566a2ffd))
+
 ## [1.0.1](https://github.com/dasprid/mui-rhf-integration/compare/v1.0.0...v1.0.1) (2022-06-13)
 
 
