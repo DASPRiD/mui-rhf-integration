@@ -1,3 +1,10 @@
+## [2.0.1](https://github.com/dasprid/mui-rhf-integration/compare/v2.0.0...v2.0.1) (2023-01-13)
+
+
+### Bug Fixes
+
+* add catch statement to lazy date and time pickers ([629848b](https://github.com/dasprid/mui-rhf-integration/commit/629848b37bd39b06fd409b04f9979784d87412f2))
+
 # [2.0.0](https://github.com/dasprid/mui-rhf-integration/compare/v1.1.0...v2.0.0) (2023-01-13)
 
 
