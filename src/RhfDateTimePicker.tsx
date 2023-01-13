@@ -18,7 +18,14 @@ export type RhfDateTimePickerProps<
 };
 
 const LazyDateTimePicker = lazy(
-    async () => import('@mui/x-date-pickers/DateTimePicker').then(module => ({default: module.DateTimePicker}))
+    async () => import('@mui/x-date-pickers/DateTimePicker')
+        .then(module => ({default: module.DateTimePicker}))
+        .catch(() => {
+            /* istanbul ignore next */
+            console.error('You must install @mui/x-date-pickers in order to use RhfDateTimePicker');
+            /* istanbul ignore next */
+            throw new Error('Failed to load @mui/x-date-pickers');
+        })
 );
 
 const RhfDateTimePicker = <

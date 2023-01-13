@@ -18,7 +18,14 @@ export type RhfTimePickerProps<
 };
 
 const LazyTimePicker = lazy(
-    async () => import('@mui/x-date-pickers/TimePicker').then(module => ({default: module.TimePicker}))
+    async () => import('@mui/x-date-pickers/TimePicker')
+        .then(module => ({default: module.TimePicker}))
+        .catch(() => {
+            /* istanbul ignore next */
+            console.error('You must install @mui/x-date-pickers in order to use RhfTimePicker');
+            /* istanbul ignore next */
+            throw new Error('Failed to load @mui/x-date-pickers');
+        })
 );
 
 const RhfTimePicker = <
