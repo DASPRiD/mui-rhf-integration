@@ -1,3 +1,10 @@
+## [2.0.2](https://github.com/dasprid/mui-rhf-integration/compare/v2.0.1...v2.0.2) (2023-01-13)
+
+
+### Bug Fixes
+
+* move date and time pickers to separate export file ([a00d0e8](https://github.com/dasprid/mui-rhf-integration/commit/a00d0e81919ae1864ecfa05642d580988fe581b7))
+
 ## [2.0.1](https://github.com/dasprid/mui-rhf-integration/compare/v2.0.0...v2.0.1) (2023-01-13)
 
 
