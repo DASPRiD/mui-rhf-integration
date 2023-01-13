@@ -25,6 +25,10 @@ You'll need to have the following peer dependencies installed:
 Note that in order to use the `RhfDatePicker`, `RhfDateTimePicker` and `RhfTimePicker` components you need to also
 install the `@mui/x-date-pickers` package.
 
+> **Note:** As having the date and time pickers exported together with all other input types breaks some bundlers like
+> Vite when the optional dependency is not installed, these pickers have to be imported from
+> `mui-rhf-integration/dist/date-pickers` specifically. 
+
 ### Form setup
 
 ```typescript jsx
