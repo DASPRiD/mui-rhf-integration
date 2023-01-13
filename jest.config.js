@@ -3,10 +3,11 @@ module.exports = {
     preset: 'ts-jest',
     testEnvironment: 'jsdom',
     clearMocks: true,
-    globals: {
-        'ts-jest': {
-            isolatedModules: true,
-        },
+    transform: {
+        '^.+\\.tsx?$': [
+            'ts-jest',
+            {isolatedModules: true},
+        ],
     },
     collectCoverageFrom: [
         'src/**/*.{ts,tsx}',
