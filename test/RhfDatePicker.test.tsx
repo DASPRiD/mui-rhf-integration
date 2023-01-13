@@ -1,4 +1,4 @@
-import {RhfDatePicker} from '../src';
+import {RhfDatePicker} from '../src/date-picker';
 import {runGenericDateTimeTest} from './genericDateTimeTest';
 
 describe('RhfDatePicker', () => {
