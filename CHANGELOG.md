@@ -1,3 +1,15 @@
+# [2.0.0](https://github.com/dasprid/mui-rhf-integration/compare/v1.1.0...v2.0.0) (2023-01-13)
+
+
+### Features
+
+* update to newer dependencies ([c5948a9](https://github.com/dasprid/mui-rhf-integration/commit/c5948a939505dbddebec3ee1da5a17186316d3eb))
+
+
+### BREAKING CHANGES
+
+* The react dependency has been raised to version 18.2.
+
 # [1.1.0](https://github.com/dasprid/mui-rhf-integration/compare/v1.0.1...v1.1.0) (2022-06-25)
 
 
