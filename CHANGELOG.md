@@ -1,3 +1,10 @@
+## [2.0.3](https://github.com/dasprid/mui-rhf-integration/compare/v2.0.2...v2.0.3) (2023-03-02)
+
+
+### Bug Fixes
+
+* export date-picker.js ([234591f](https://github.com/dasprid/mui-rhf-integration/commit/234591f8c50f256a14a87f003684e24aa7da4d8d))
+
 ## [2.0.2](https://github.com/dasprid/mui-rhf-integration/compare/v2.0.1...v2.0.2) (2023-01-13)
 
 
