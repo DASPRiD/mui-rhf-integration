@@ -26,7 +26,8 @@
   ],
   "module": "./dist/index.js",
   "exports": {
-    ".": "./dist/index.js"
+    ".": "./dist/index.js",
+    "./dist/date-picker": "./dist/date-picker.js"
   },
   "types": "./dist/index.d.ts",
   "peerDependencies": {
