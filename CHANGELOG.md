@@ -1,3 +1,10 @@
+# [2.1.0](https://github.com/dasprid/mui-rhf-integration/compare/v2.0.3...v2.1.0) (2023-03-03)
+
+
+### Features
+
+* **RhfTextField:** add character counter ([4080b4f](https://github.com/dasprid/mui-rhf-integration/commit/4080b4ffd22b84178c8af88f773e4df8fd58fc0e))
+
 ## [2.0.3](https://github.com/dasprid/mui-rhf-integration/compare/v2.0.2...v2.0.3) (2023-03-02)
 
 
