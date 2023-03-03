@@ -91,4 +91,13 @@ describe('RhfTextField', () => {
         expect(screen.getByLabelText('Test field')).toHaveFocus();
         expect(screen.getByLabelText('Test field').parentNode).toHaveClass('Mui-error');
     });
+
+    it('should display character count', () => {
+        initTest({
+            helperText: 'Helper text',
+            maxCharacters: 5,
+        });
+
+        expect(screen.getByText('0/5')).toBeInTheDocument();
+    });
 });

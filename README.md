@@ -82,6 +82,9 @@ Wrapper around the `TextField` component. Passes all known `TextFieldProps` prop
 />
 ```
 
+The `RhfTextField` additional implements the Material Design recommendation for character counters. To enable them,
+pass `maxCharacters` as property. You should additionally enable `maxLength` on the `inputProps`. 
+
 ### `RhfCheckbox`
 
 Wrapper around the `Checkbox` component. Passes all known `CheckboxProps` properties down. Allowed value types are
