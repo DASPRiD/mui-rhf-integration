@@ -1,3 +1,17 @@
+# [3.0.0](https://github.com/dasprid/mui-rhf-integration/compare/v2.1.0...v3.0.0) (2023-04-17)
+
+
+### Features
+
+* migrate to @mui/x-date-pickers V6 ([2bc5427](https://github.com/dasprid/mui-rhf-integration/commit/2bc5427dcd48e9723aca2b9382a2712577c2b635))
+
+
+### BREAKING CHANGES
+
+* mui-rhf-integration now requires V6 of @mui/x-date-pickers.
+Additionally, the date pickers are now exported as
+`mui-rhf-integration/date-picker`
+
 # [2.1.0](https://github.com/dasprid/mui-rhf-integration/compare/v2.0.3...v2.1.0) (2023-03-03)
 
 
