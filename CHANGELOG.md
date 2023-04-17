@@ -1,3 +1,10 @@
+## [3.0.1](https://github.com/dasprid/mui-rhf-integration/compare/v3.0.0...v3.0.1) (2023-04-17)
+
+
+### Bug Fixes
+
+* add module type and more explicit exports ([4a73494](https://github.com/dasprid/mui-rhf-integration/commit/4a734946c8927c8721d63f70f3b782805353bee2))
+
 # [3.0.0](https://github.com/dasprid/mui-rhf-integration/compare/v2.1.0...v3.0.0) (2023-04-17)
 
 
