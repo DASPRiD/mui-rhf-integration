@@ -24,11 +24,18 @@
   "files": [
     "dist/**/*"
   ],
-  "module": "./dist/index.js",
+  "type": "module",
   "exports": {
-    ".": "./dist/index.js",
-    "./date-picker": "./dist/date-picker.js"
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./date-picker": {
+      "types": "./dist/date-picker.d.ts",
+      "import": "./dist/date-picker.js"
+    }
   },
+  "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "peerDependencies": {
     "@mui/material": "^5.11.0",
