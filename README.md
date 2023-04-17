@@ -18,7 +18,7 @@ npm i mui-rhf-integration
 
 You'll need to have the following peer dependencies installed:
 
-- `react@^17`
+- `react@^18`
 - `@mui/material@^5.5.0`
 - `react-hook-form@^7.29.0`
 
@@ -27,7 +27,7 @@ install the `@mui/x-date-pickers` package.
 
 > **Note:** As having the date and time pickers exported together with all other input types breaks some bundlers like
 > Vite when the optional dependency is not installed, these pickers have to be imported from
-> `mui-rhf-integration/dist/date-picker` specifically. 
+> `mui-rhf-integration/date-picker` specifically. 
 
 ### Form setup
 

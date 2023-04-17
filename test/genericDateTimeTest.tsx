@@ -36,6 +36,12 @@ export const runGenericDateTimeTest = (
         </LocalizationProvider>
     ));
 
+    const getTestFieldValue = async () : Promise<string> => {
+        const testField = await waitFor(() => screen.getByLabelText<HTMLInputElement>('Test field'));
+        // @see https://github.com/mui/mui-x/issues/8150
+        return testField.value.replace(/[\u2066\u2068\u2069]/g, '');
+    };
+
     beforeEach(() => {
         window.matchMedia = jest.fn().mockImplementation(query => ({
             matches: query === '(pointer: fine)',
@@ -47,8 +53,7 @@ export const runGenericDateTimeTest = (
     it('should treat undefined as empty value', async () => {
         initTest();
 
-        const testField = await waitFor(() => screen.getByLabelText('Test field'));
-        expect(testField).toHaveValue('');
+        expect(await getTestFieldValue()).toEqual('');
     });
 
     it('should treat null as empty value', async () => {
@@ -56,8 +61,7 @@ export const runGenericDateTimeTest = (
             foo: null,
         });
 
-        const testField = await waitFor(() => screen.getByLabelText('Test field'));
-        expect(testField).toHaveValue('');
+        expect(await getTestFieldValue()).toEqual('');
     });
 
     it('should use default value', async () => {
@@ -65,8 +69,7 @@ export const runGenericDateTimeTest = (
             foo: validDefaultValue,
         });
 
-        const testField = await waitFor(() => screen.getByLabelText('Test field'));
-        expect(testField).toHaveValue(expectedTextValue);
+        expect(await getTestFieldValue()).toEqual(expectedTextValue);
     });
 
     it('should change value', async () => {
