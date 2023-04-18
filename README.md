@@ -27,8 +27,7 @@ install the `@mui/x-date-pickers` package.
 
 > **Note:** As having the date and time pickers exported together with all other input types breaks some bundlers like
 > Vite when the optional dependency is not installed, these pickers have to be imported from
-> `mui-rhf-integration/date-picker` specifically. If you are not using `NodeNext` resolution, you have to import from
-> `mui-rhf-integration/dist/date-picker.js`
+> `mui-rhf-integration/date-picker` specifically.
 
 ### Form setup
 

@@ -18,25 +18,29 @@
   "scripts": {
     "test": "jest test --coverage",
     "lint": "eslint src test",
-    "build": "tsc",
-    "prepare": "husky install"
+    "build": "vite build",
+    "prepare": "husky install",
+    "prepack": "mv -f dist/* ./"
   },
   "files": [
-    "dist/**/*"
+    "index.*",
+    "date-picker.*"
   ],
-  "type": "module",
   "sideEffects": false,
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
+      "types": "./index.d.ts",
+      "require": "./index.js",
+      "import": "./index.mjs"
     },
     "./date-picker": {
-      "types": "./dist/date-picker.d.ts",
-      "import": "./dist/date-picker.js"
+      "types": "./date-picker.d.ts",
+      "require": "./date-picker.js",
+      "import": "./date-picker.mjs"
     }
   },
-  "module": "./dist/index.js",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "peerDependencies": {
     "@mui/material": "^5.11.0",
@@ -58,7 +62,7 @@
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.1.1",
-    "@tsconfig/vite-react": "^1.0.0",
+    "@tsconfig/vite-react": "^1.0.1",
     "@types/jest": "^29.2.5",
     "@types/react": "^18.0.26",
     "date-fns": "^2.28.0",
@@ -71,7 +75,9 @@
     "lint-staged": "^13.0.1",
     "react-dom": "^18.2.0",
     "ts-jest": "^29.0.5",
-    "typescript": "^5.0.4"
+    "typescript": "^5.0.4",
+    "vite": "^4.2.2",
+    "vite-plugin-dts": "^2.3.0"
   },
   "lint-staged": {
     "*.{ts,tsx}": "eslint --cache --fix"

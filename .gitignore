@@ -2,3 +2,5 @@
 /dist
 /.eslintcache
 /coverage
+/index.*
+/date-picker.*
