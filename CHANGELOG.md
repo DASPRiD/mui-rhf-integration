@@ -1,3 +1,10 @@
+## [3.0.2](https://github.com/dasprid/mui-rhf-integration/compare/v3.0.1...v3.0.2) (2023-04-18)
+
+
+### Bug Fixes
+
+* pack all exports in root directory and include CJS files ([186fbaa](https://github.com/dasprid/mui-rhf-integration/commit/186fbaa0d80c2f64414348c9e5d66f3af57c613b))
+
 ## [3.0.1](https://github.com/dasprid/mui-rhf-integration/compare/v3.0.0...v3.0.1) (2023-04-17)
 
 
