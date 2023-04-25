@@ -1,3 +1,10 @@
+# [3.1.0](https://github.com/dasprid/mui-rhf-integration/compare/v3.0.2...v3.1.0) (2023-04-25)
+
+
+### Features
+
+* **RhfTextField:** pass name property to inner TextField ([aa88709](https://github.com/dasprid/mui-rhf-integration/commit/aa887097c5c53e76ec73cf813ad80ce9853ebcb8))
+
 ## [3.0.2](https://github.com/dasprid/mui-rhf-integration/compare/v3.0.1...v3.0.2) (2023-04-18)
 
 
