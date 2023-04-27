@@ -1,3 +1,10 @@
+# [3.2.0](https://github.com/dasprid/mui-rhf-integration/compare/v3.1.0...v3.2.0) (2023-04-27)
+
+
+### Features
+
+* export prop types ([ce0ec09](https://github.com/dasprid/mui-rhf-integration/commit/ce0ec098abcb643bd0b5c1e84cd2b91ba0e04495))
+
 # [3.1.0](https://github.com/dasprid/mui-rhf-integration/compare/v3.0.2...v3.1.0) (2023-04-25)
 
 
