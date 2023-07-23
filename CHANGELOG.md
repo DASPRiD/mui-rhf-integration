@@ -1,3 +1,10 @@
+# [3.3.0](https://github.com/dasprid/mui-rhf-integration/compare/v3.2.0...v3.3.0) (2023-07-23)
+
+
+### Features
+
+* **date-picker:** forward slot props ([d330c56](https://github.com/dasprid/mui-rhf-integration/commit/d330c5683442f5a60af98e10d6019115ccc8f710))
+
 # [3.2.0](https://github.com/dasprid/mui-rhf-integration/compare/v3.1.0...v3.2.0) (2023-04-27)
 
 
