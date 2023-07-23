@@ -40,6 +40,7 @@ const RhfTimePicker = <
             value={value}
             inputRef={field.ref}
             slotProps={{
+                ...datePickerProps.slotProps,
                 textField: {
                     ...textFieldProps,
                     error: Boolean(fieldState.error),
