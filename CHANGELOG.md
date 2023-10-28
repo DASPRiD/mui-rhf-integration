@@ -1,3 +1,10 @@
+# [3.4.0](https://github.com/dasprid/mui-rhf-integration/compare/v3.3.0...v3.4.0) (2023-10-28)
+
+
+### Features
+
+* allow ReactNode as label for checkbox and radio group ([cba22f7](https://github.com/dasprid/mui-rhf-integration/commit/cba22f7f38f34a410e8b4059fcc02d9cc2a133da))
+
 # [3.3.0](https://github.com/dasprid/mui-rhf-integration/compare/v3.2.0...v3.3.0) (2023-07-23)
 
 
