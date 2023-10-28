@@ -1,5 +1,6 @@
 import type {FormControlProps, FormGroupProps, FormLabelProps} from '@mui/material';
 import {Checkbox, FormControl, FormControlLabel, FormGroup, FormHelperText, FormLabel} from '@mui/material';
+import type {ReactNode} from 'react';
 import type {Control} from 'react-hook-form';
 import {useController} from 'react-hook-form';
 import type {FieldPath, FieldValues} from 'react-hook-form/dist/types';
@@ -7,7 +8,7 @@ import type {RegisterOptions} from 'react-hook-form/dist/types/validator';
 
 export type CheckboxOption = {
     value : string;
-    label : string;
+    label : ReactNode;
 };
 
 export type RhfCheckboxGroupProps<

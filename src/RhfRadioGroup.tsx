@@ -1,5 +1,6 @@
 import type {FormControlProps, FormLabelProps, RadioGroupProps} from '@mui/material';
 import {FormControl, FormControlLabel, FormHelperText, FormLabel, Radio, RadioGroup} from '@mui/material';
+import type {ReactNode} from 'react';
 import type {Control} from 'react-hook-form';
 import {useController} from 'react-hook-form';
 import type {FieldPath, FieldValues} from 'react-hook-form/dist/types';
@@ -7,7 +8,7 @@ import type {RegisterOptions} from 'react-hook-form/dist/types/validator';
 
 export type RadioOption = {
     value : string;
-    label : string;
+    label : ReactNode;
 };
 
 export type RhfRadioGroupProps<
