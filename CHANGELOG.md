@@ -1,3 +1,10 @@
+## [3.4.1](https://github.com/dasprid/mui-rhf-integration/compare/v3.4.0...v3.4.1) (2024-03-20)
+
+
+### Bug Fixes
+
+* **RhfAutocomplete:** do not map value to option while loading ([a3a7995](https://github.com/dasprid/mui-rhf-integration/commit/a3a799533756a57e169ddeebce27d79718a74677))
+
 # [3.4.0](https://github.com/dasprid/mui-rhf-integration/compare/v3.3.0...v3.4.0) (2023-10-28)
 
 
