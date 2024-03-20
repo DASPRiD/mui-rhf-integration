@@ -39,6 +39,7 @@ const RhfAutocomplete = <
     multiple,
     valueToOption,
     optionToValue,
+    loading,
     ...rest
 } : RhfAutocompleteProps<
     T,
@@ -54,14 +55,18 @@ const RhfAutocomplete = <
     if (value === undefined) {
         value = null;
     } else if (value && valueToOption) {
-        if (multiple) {
+        if (loading) {
+            value = [];
+        } else if (multiple) {
             /* istanbul ignore next */
             if (!Array.isArray(value)) {
                 console.warn('Received a non-array value for a multiple Autocomplete');
                 value = [];
             }
 
-            value = (value as unknown[]).map(valueToOption);
+            value = (value as unknown[])
+                .map(valueToOption)
+                .filter(value => value !== undefined && value !== null);
         } else if (!multiple) {
             value = valueToOption(value);
         }
@@ -90,6 +95,7 @@ const RhfAutocomplete = <
             }}
             value={value as AutocompleteValue<T, Multiple, DisableClearable, FreeSolo>}
             multiple={multiple}
+            loading={loading}
             renderInput={params => (
                 <TextField
                     {...textFieldProps}
