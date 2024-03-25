@@ -1,3 +1,15 @@
+# [4.0.0](https://github.com/dasprid/mui-rhf-integration/compare/v3.4.1...v4.0.0) (2024-03-25)
+
+
+### Features
+
+* upgrade to @mui/x-date-pickers v7 ([d6d9e85](https://github.com/dasprid/mui-rhf-integration/commit/d6d9e85d7676d94b6d2f8fa3f2cd765c310933d5))
+
+
+### BREAKING CHANGES
+
+* this release is incompatible with @mui/x-date-pickers v6.
+
 ## [3.4.1](https://github.com/dasprid/mui-rhf-integration/compare/v3.4.0...v3.4.1) (2024-03-20)
 
 
