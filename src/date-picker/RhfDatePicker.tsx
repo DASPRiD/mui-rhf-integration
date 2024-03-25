@@ -1,19 +1,24 @@
-import type {TextFieldProps} from '@mui/material';
-import type {DatePickerProps} from '@mui/x-date-pickers';
-import {DatePicker} from '@mui/x-date-pickers';
-import type {Control} from 'react-hook-form';
-import {useController} from 'react-hook-form';
-import type {FieldPath, FieldValues} from 'react-hook-form/dist/types';
-import type {RegisterOptions} from 'react-hook-form/dist/types/validator';
+import type { TextFieldProps } from "@mui/material";
+import type { DatePickerProps, PickerValidDate } from "@mui/x-date-pickers";
+import { DatePicker } from "@mui/x-date-pickers";
+import type { ReactNode } from "react";
+import type { Control, FieldPath, FieldValues, RegisterOptions } from "react-hook-form";
+import { useController } from "react-hook-form";
 
 export type RhfDatePickerProps<
     TFieldValues extends FieldValues = FieldValues,
     TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
-> = Omit<DatePickerProps<unknown>, 'error' | 'onChange' | 'value' | 'renderInput'> & {
-    control : Control<TFieldValues>;
-    name : TName;
-    rules ?: Omit<RegisterOptions<TFieldValues, TName>, 'valueAsNumber' | 'valueAsDate' | 'setValueAs' | 'disabled'>;
-    textFieldProps ?: Omit<TextFieldProps, 'label' | 'error' | 'onChange' | 'onBlur' | 'value' | 'inputRef'>;
+> = Omit<DatePickerProps<PickerValidDate>, "error" | "onChange" | "value" | "renderInput"> & {
+    control: Control<TFieldValues>;
+    name: TName;
+    rules?: Omit<
+        RegisterOptions<TFieldValues, TName>,
+        "valueAsNumber" | "valueAsDate" | "setValueAs" | "disabled"
+    >;
+    textFieldProps?: Omit<
+        TextFieldProps,
+        "label" | "error" | "onChange" | "onBlur" | "value" | "inputRef"
+    >;
 };
 
 const RhfDatePicker = <
@@ -25,9 +30,9 @@ const RhfDatePicker = <
     rules,
     textFieldProps,
     ...datePickerProps
-} : RhfDatePickerProps<TFieldValues, TName>) : JSX.Element => {
-    const {field, fieldState} = useController({control, name, rules});
-    let value = field.value as unknown;
+}: RhfDatePickerProps<TFieldValues, TName>): ReactNode => {
+    const { field, fieldState } = useController({ control, name, rules });
+    let value = field.value as PickerValidDate | null | undefined;
 
     if (value === undefined) {
         value = null;

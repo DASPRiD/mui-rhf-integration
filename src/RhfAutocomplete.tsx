@@ -1,9 +1,9 @@
-import type {AutocompleteProps, AutocompleteValue, TextFieldProps} from '@mui/material';
-import {Autocomplete, TextField} from '@mui/material';
-import type {Control} from 'react-hook-form';
-import {useController} from 'react-hook-form';
-import type {FieldPath, FieldValues} from 'react-hook-form/dist/types';
-import type {RegisterOptions} from 'react-hook-form/dist/types/validator';
+import type { AutocompleteProps, AutocompleteValue, TextFieldProps } from "@mui/material";
+import { Autocomplete, TextField } from "@mui/material";
+import type { ReactNode } from "react";
+import type { Control } from "react-hook-form";
+import { useController } from "react-hook-form";
+import type { FieldPath, FieldValues, RegisterOptions } from "react-hook-form";
 
 export type RhfAutocompleteProps<
     T,
@@ -14,14 +14,17 @@ export type RhfAutocompleteProps<
     TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 > = Omit<
     AutocompleteProps<T, Multiple, DisableClearable, FreeSolo>,
-    'error' | 'onChange' | 'onBlur' | 'value' | 'renderInput'
+    "error" | "onChange" | "onBlur" | "value" | "renderInput"
 > & {
-    control : Control<TFieldValues>;
-    name : TName;
-    rules ?: Omit<RegisterOptions<TFieldValues, TName>, 'valueAsNumber' | 'valueAsDate' | 'setValueAs' | 'disabled'>;
-    textFieldProps ?: Omit<TextFieldProps, 'error' | 'onChange' | 'onBlur' | 'value' | 'inputRef'>;
-    valueToOption ?: (value : unknown) => T | undefined | null;
-    optionToValue ?: (option : T) => unknown;
+    control: Control<TFieldValues>;
+    name: TName;
+    rules?: Omit<
+        RegisterOptions<TFieldValues, TName>,
+        "valueAsNumber" | "valueAsDate" | "setValueAs" | "disabled"
+    >;
+    textFieldProps?: Omit<TextFieldProps, "error" | "onChange" | "onBlur" | "value" | "inputRef">;
+    valueToOption?: (value: unknown) => T | undefined | null;
+    optionToValue?: (option: T) => unknown;
 };
 
 const RhfAutocomplete = <
@@ -41,15 +44,15 @@ const RhfAutocomplete = <
     optionToValue,
     loading,
     ...rest
-} : RhfAutocompleteProps<
+}: RhfAutocompleteProps<
     T,
     Multiple,
     DisableClearable,
     FreeSolo,
     TFieldValues,
     TName
->) : JSX.Element => {
-    const {field, fieldState} = useController({control, name, rules});
+>): ReactNode => {
+    const { field, fieldState } = useController({ control, name, rules });
     let value = field.value as unknown;
 
     if (value === undefined) {
@@ -60,13 +63,13 @@ const RhfAutocomplete = <
         } else if (multiple) {
             /* istanbul ignore next */
             if (!Array.isArray(value)) {
-                console.warn('Received a non-array value for a multiple Autocomplete');
+                console.warn("Received a non-array value for a multiple Autocomplete");
                 value = [];
             }
 
             value = (value as unknown[])
                 .map(valueToOption)
-                .filter(value => value !== undefined && value !== null);
+                .filter((value) => value !== undefined && value !== null);
         } else if (!multiple) {
             value = valueToOption(value);
         }
@@ -74,8 +77,8 @@ const RhfAutocomplete = <
 
     return (
         <Autocomplete
-            onChange={(event, value) => {
-                if (!optionToValue || !(value as unknown)) {
+            onChange={(_event, value) => {
+                if (!(optionToValue && (value as unknown))) {
                     field.onChange(value);
                     return;
                 }
@@ -91,12 +94,12 @@ const RhfAutocomplete = <
                 }
 
                 /* istanbul ignore next */
-                console.warn('Autocomplete is set to multiple but value is an not array');
+                console.warn("Autocomplete is set to multiple but value is an not array");
             }}
             value={value as AutocompleteValue<T, Multiple, DisableClearable, FreeSolo>}
             multiple={multiple}
             loading={loading}
-            renderInput={params => (
+            renderInput={(params) => (
                 <TextField
                     {...textFieldProps}
                     {...params}

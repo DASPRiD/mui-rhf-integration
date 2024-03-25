@@ -1,28 +1,36 @@
-import type {FormControlProps, FormGroupProps, FormLabelProps} from '@mui/material';
-import {Checkbox, FormControl, FormControlLabel, FormGroup, FormHelperText, FormLabel} from '@mui/material';
-import type {ReactNode} from 'react';
-import type {Control} from 'react-hook-form';
-import {useController} from 'react-hook-form';
-import type {FieldPath, FieldValues} from 'react-hook-form/dist/types';
-import type {RegisterOptions} from 'react-hook-form/dist/types/validator';
+import type { FormControlProps, FormGroupProps, FormLabelProps } from "@mui/material";
+import {
+    Checkbox,
+    FormControl,
+    FormControlLabel,
+    FormGroup,
+    FormHelperText,
+    FormLabel,
+} from "@mui/material";
+import type { ReactNode } from "react";
+import type { Control, FieldPath, FieldValues, RegisterOptions } from "react-hook-form";
+import { useController } from "react-hook-form";
 
 export type CheckboxOption = {
-    value : string;
-    label : ReactNode;
+    value: string;
+    label: ReactNode;
 };
 
 export type RhfCheckboxGroupProps<
     TFieldValues extends FieldValues = FieldValues,
     TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
-> = Omit<FormControlProps<'fieldset'>, 'error' | 'component' | 'ref'> & {
-    control : Control<TFieldValues>;
-    name : TName;
-    rules ?: Omit<RegisterOptions<TFieldValues, TName>, 'valueAsNumber' | 'valueAsDate' | 'setValueAs' | 'disabled'>;
-    label : string;
-    options : CheckboxOption[];
-    helperText ?: string;
-    formLabelProps ?: Omit<FormLabelProps<'legend'>, 'component'>;
-    formGroupProps ?: FormGroupProps;
+> = Omit<FormControlProps<"fieldset">, "error" | "component" | "ref"> & {
+    control: Control<TFieldValues>;
+    name: TName;
+    rules?: Omit<
+        RegisterOptions<TFieldValues, TName>,
+        "valueAsNumber" | "valueAsDate" | "setValueAs" | "disabled"
+    >;
+    label: string;
+    options: CheckboxOption[];
+    helperText?: string;
+    formLabelProps?: Omit<FormLabelProps<"legend">, "component">;
+    formGroupProps?: FormGroupProps;
 };
 
 const RhfCheckboxGroup = <
@@ -38,19 +46,21 @@ const RhfCheckboxGroup = <
     formLabelProps,
     formGroupProps,
     ...formControlProps
-} : RhfCheckboxGroupProps<TFieldValues, TName>) : JSX.Element => {
-    const {field, fieldState} = useController({control, name, rules});
+}: RhfCheckboxGroupProps<TFieldValues, TName>): ReactNode => {
+    const { field, fieldState } = useController({ control, name, rules });
     let selectedValues = field.value as unknown;
 
     if (selectedValues === undefined || selectedValues === null) {
         selectedValues = [];
     } else if (!Array.isArray(selectedValues)) {
-        throw new Error('RhfCheckboxGroup value must be array, null or undefined');
+        throw new Error("RhfCheckboxGroup value must be array, null or undefined");
     }
 
-    const handleChange = (value : string, checked : boolean) => {
+    const handleChange = (value: string, checked: boolean) => {
         if (!checked) {
-            field.onChange((selectedValues as string[]).filter(selectedValue => selectedValue !== value));
+            field.onChange(
+                (selectedValues as string[]).filter((selectedValue) => selectedValue !== value),
+            );
             return;
         }
 
@@ -65,17 +75,19 @@ const RhfCheckboxGroup = <
             ref={field.ref}
             {...formControlProps}
         >
-            <FormLabel component="legend" {...formLabelProps}>{label}</FormLabel>
+            <FormLabel component="legend" {...formLabelProps}>
+                {label}
+            </FormLabel>
             <FormGroup {...formGroupProps}>
-                {options.map(option => (
+                {options.map((option) => (
                     <FormControlLabel
                         key={option.value}
                         name={option.value}
                         checked={(selectedValues as string[]).includes(option.value)}
-                        onChange={(event, checked) => {
+                        onChange={(_event, checked) => {
                             handleChange(option.value, checked);
                         }}
-                        control={<Checkbox/>}
+                        control={<Checkbox />}
                         label={option.label}
                     />
                 ))}

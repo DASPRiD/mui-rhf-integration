@@ -1,7 +1,7 @@
-name: Release
+name: Pull Request
 
 on:
-  push:
+  pull_request:
     branches:
       - main
 
@@ -30,6 +30,9 @@ jobs:
       - name: Biome CI
         run: pnpm exec biome ci .
 
+      - name: TypeCheck
+        run: pnpm exec tsc
+
       - name: Test
         run: pnpm coverage
 
@@ -37,20 +40,3 @@ jobs:
         uses: codecov/codecov-action@v4
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-
-      - name: Build
-        run: pnpm build
-
-      - name: Semantic Release
-        uses: cycjimmy/semantic-release-action@v4
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          HUSKY: 0
-        id: semantic
-        with:
-          semantic_version: 19.0.5
-          extra_plugins: |
-            @semantic-release/changelog@6.0
-            @semantic-release/git@10.0
-            semantic-release-license@1.0

@@ -1,45 +1,48 @@
-import {render} from '@testing-library/react';
-import type {Control, UseFormReturn} from 'react-hook-form';
-import {useForm} from 'react-hook-form';
-import type {FieldValues} from 'react-hook-form/dist/types';
-import type {DefaultValues} from 'react-hook-form/dist/types/form';
+import { render } from "@testing-library/react";
+import type { ReactNode } from "react";
+import type { Control, DefaultValues, FieldValues, UseFormReturn } from "react-hook-form";
+import { useForm } from "react-hook-form";
 
-type RenderComponent<
-    TProps extends Record<string, unknown>,
-    TFieldValues extends FieldValues,
-> = (control : Control<TFieldValues>, props ?: TProps) => JSX.Element;
+type RenderComponent<TProps extends Record<string, unknown>, TFieldValues extends FieldValues> = (
+    control: Control<TFieldValues>,
+    props?: TProps,
+) => ReactNode;
 
-type InitTest<
-    TProps extends Record<string, unknown>,
-    TFieldValues extends FieldValues,
-> = (
-    props ?: TProps,
-    defaultValues ?: DefaultValues<FieldValues>,
+type InitTest<TProps extends Record<string, unknown>, TFieldValues extends FieldValues> = (
+    props?: TProps,
+    defaultValues?: DefaultValues<FieldValues>,
 ) => UseFormReturn<TFieldValues>;
 
-export const createInitTest = <
-    TProps extends Record<string, unknown>,
-    TFieldValues extends FieldValues,
->(renderComponent : RenderComponent<TProps, TFieldValues>) : InitTest<TProps, TFieldValues> => (
-    props ?: TProps,
-    // We allow any field values here in order to test passing invalid values.
-    defaultValues ?: DefaultValues<FieldValues>,
-) => {
-    let form;
+export const createInitTest =
+    <TProps extends Record<string, unknown>, TFieldValues extends FieldValues>(
+        renderComponent: RenderComponent<TProps, TFieldValues>,
+    ): InitTest<TProps, TFieldValues> =>
+    (
+        props?: TProps,
+        // We allow any field values here in order to test passing invalid values.
+        defaultValues?: DefaultValues<FieldValues>,
+    ) => {
+        let form: UseFormReturn<TFieldValues>;
 
-    const TestComponent = () => {
-        form = useForm<TFieldValues>({defaultValues: defaultValues as DefaultValues<TFieldValues>});
+        const TestComponent = () => {
+            form = useForm<TFieldValues>({
+                defaultValues: defaultValues as DefaultValues<TFieldValues>,
+            });
 
-        return (
-            <form onSubmit={form.handleSubmit(() => {
-                // No-op
-            })}>
-                {renderComponent(form.control, props)}
-                <button type="submit">Submit</button>
-            </form>
-        );
+            return (
+                <form
+                    onSubmit={form.handleSubmit(() => {
+                        // No-op
+                    })}
+                >
+                    {renderComponent(form.control, props)}
+                    <button type="submit">Submit</button>
+                </form>
+            );
+        };
+
+        render(<TestComponent />);
+
+        // @ts-expect-error form is populated during render
+        return form;
     };
-
-    render(<TestComponent/>);
-    return form as unknown as UseFormReturn<TFieldValues>;
-};

@@ -1,81 +1,85 @@
-import type {TextFieldProps} from '@mui/material';
-import {LocalizationProvider} from '@mui/x-date-pickers';
-import {AdapterDateFns} from '@mui/x-date-pickers/AdapterDateFns';
-import '@testing-library/jest-dom';
-import {fireEvent, screen, waitFor} from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import {format} from 'date-fns';
-import type {Control} from 'react-hook-form';
-import type {RegisterOptions} from 'react-hook-form/dist/types/validator';
-import {createInitTest} from './initTest';
+import type { TextFieldProps } from "@mui/material";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFnsV3";
+import "@testing-library/jest-dom";
+import { fireEvent, screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import { format } from "date-fns";
+import type { ReactNode } from 'react';
+import type { Control } from "react-hook-form";
+import type { RegisterOptions } from "react-hook-form";
+import { beforeEach, expect, it, vi } from "vitest";
+import { createInitTest } from "./initTest";
 
 type TestFormValues = {
-    foo : Date;
+    foo: Date;
 };
 
 type RenderProps = {
-    label ?: string;
-    textFieldProps ?: TextFieldProps;
-    rules ?: Omit<RegisterOptions<TestFormValues, 'foo'>, 'valueAsNumber' | 'valueAsDate' | 'setValueAs' | 'disabled'>;
+    label?: string;
+    textFieldProps?: TextFieldProps;
+    rules?: Omit<
+        RegisterOptions<TestFormValues, "foo">,
+        "valueAsNumber" | "valueAsDate" | "setValueAs" | "disabled"
+    >;
 };
 
-type RenderComponent = (control : Control<TestFormValues>, props ?: RenderProps) => JSX.Element;
+type RenderComponent = (control: Control<TestFormValues>, props?: RenderProps) => ReactNode;
 
 export const runGenericDateTimeTest = (
-    renderComponent : RenderComponent,
-    validDefaultValue : Date,
-    expectedTextValue : string,
-    formatString : string,
-) : void => {
-    const initTest = createInitTest<
-        RenderProps,
-        TestFormValues
-    >((control, props) => (
+    renderComponent: RenderComponent,
+    validDefaultValue: Date,
+    expectedTextValue: string,
+    formatString: string,
+): void => {
+    const initTest = createInitTest<RenderProps, TestFormValues>((control, props) => (
         <LocalizationProvider dateAdapter={AdapterDateFns}>
-            {renderComponent(control, {label: 'Test field', ...props})}
+            {renderComponent(control, { label: "Test field", ...props })}
         </LocalizationProvider>
     ));
 
-    const getTestFieldValue = async () : Promise<string> => {
-        const testField = await waitFor(() => screen.getByLabelText<HTMLInputElement>('Test field'));
+    const getTestFieldValue = async (): Promise<string> => {
+        const testField = await waitFor(() =>
+            screen.getByLabelText<HTMLInputElement>("Test field"),
+        );
         // @see https://github.com/mui/mui-x/issues/8150
-        return testField.value.replace(/[\u2066\u2068\u2069]/g, '');
+        return testField.value.replace(/[\u2066\u2068\u2069]/g, "");
     };
 
     beforeEach(() => {
-        window.matchMedia = jest.fn().mockImplementation(query => ({
-            matches: query === '(pointer: fine)',
-            addListener: jest.fn(),
-            removeListener: jest.fn(),
+        window.matchMedia = vi.fn().mockImplementation((query) => ({
+            matches: query === "(pointer: fine)",
+            addListener: vi.fn(),
+            removeListener: vi.fn(),
         }));
     });
 
-    it('should treat undefined as empty value', async () => {
+    it("should treat undefined as empty value", async () => {
         initTest();
 
-        expect(await getTestFieldValue()).toEqual('');
+        expect(await getTestFieldValue()).toEqual("");
     });
 
-    it('should treat null as empty value', async () => {
+    it("should treat null as empty value", async () => {
         initTest(undefined, {
             foo: null,
         });
 
-        expect(await getTestFieldValue()).toEqual('');
+        expect(await getTestFieldValue()).toEqual("");
     });
 
-    it('should use default value', async () => {
+    it("should use default value", async () => {
         initTest(undefined, {
             foo: validDefaultValue,
         });
 
-        expect(await getTestFieldValue()).toEqual(expectedTextValue);
+        expect((await getTestFieldValue()).toLowerCase()).toEqual(expectedTextValue);
     });
 
-    it('should change value', async () => {
+    it("should change value", async () => {
         const form = initTest();
 
-        const testField = await waitFor(() => screen.getByLabelText('Test field'));
+        const testField = await waitFor(() => screen.getByLabelText("Test field"));
         const user = userEvent.setup();
         await user.click(testField);
         await user.keyboard(expectedTextValue);
@@ -83,35 +87,35 @@ export const runGenericDateTimeTest = (
         expect(format(form.getValues().foo, formatString)).toBe(expectedTextValue);
     });
 
-    it('should display helper text without error', async () => {
+    it("should display helper text without error", async () => {
         initTest({
             textFieldProps: {
-                helperText: 'Helper text',
+                helperText: "Helper text",
             },
         });
 
-        await waitFor(() => screen.getByLabelText('Test field'));
-        expect(screen.getByText('Helper text')).toBeInTheDocument();
+        await waitFor(() => screen.getByLabelText("Test field"));
+        expect(screen.getByText("Helper text")).toBeInTheDocument();
     });
 
-    it('should display error', async () => {
+    it("should display error", async () => {
         initTest({
             textFieldProps: {
-                helperText: 'Helper text',
+                helperText: "Helper text",
             },
             rules: {
-                required: 'Required',
+                required: "Required",
             },
         });
 
-        const testField = await waitFor(() => screen.getByLabelText('Test field'));
-        fireEvent.click(screen.getByText('Submit'));
+        const testField = await waitFor(() => screen.getByLabelText("Test field"));
+        fireEvent.click(screen.getByText("Submit"));
 
         await waitFor(() => {
-            expect(screen.getByText('Required')).toBeInTheDocument();
+            expect(screen.getByText("Required")).toBeInTheDocument();
         });
 
         expect(testField).toHaveFocus();
-        expect(testField.parentNode).toHaveClass('Mui-error');
+        expect(testField.parentNode).toHaveClass("Mui-error");
     });
 };

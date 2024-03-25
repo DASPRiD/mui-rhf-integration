@@ -1,15 +1,14 @@
 {
     "extends": "@tsconfig/vite-react/tsconfig.json",
     "compilerOptions": {
+        "strict": true,
         "noImplicitAny": true,
-        "strictNullChecks": true,
-        "jsx": "react-jsx",
-        "baseUrl": ".",
         "paths": {
             "@/*": ["./src/*"]
         }
     },
     "include": [
-        "src/**/*"
+        "src/**/*",
+        "test/**/*"
     ]
 }

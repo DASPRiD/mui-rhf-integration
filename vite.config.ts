@@ -1,4 +1,4 @@
-import {defineConfig} from 'vite';
+import {defineConfig} from 'vitest/config';
 import dts from 'vite-plugin-dts';
 
 export default defineConfig({
@@ -7,13 +7,18 @@ export default defineConfig({
             rollupTypes: true,
         }),
     ],
+    test: {
+        globals: true,
+        environment: "jsdom",
+        setupFiles: "./test/setup.ts",
+    },
     build: {
         lib: {
             entry: {
                 index: 'src/index.ts',
                 'date-picker': 'src/date-picker/index.ts',
             },
-            formats: ['es', 'cjs'],
+            formats: ['es'],
         },
         rollupOptions: {
             external: [

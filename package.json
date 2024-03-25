@@ -15,11 +15,13 @@
   },
   "author": "Ben Scholzen 'DASPRiD'",
   "license": "MIT",
+  "type": "module",
   "scripts": {
-    "test": "jest test --coverage",
-    "lint": "eslint src test",
     "build": "vite build",
-    "prepare": "husky install",
+    "test": "vitest",
+    "coverage": "vitest run --coverage",
+    "format": "biome format . --write",
+    "check": "biome check . --apply",
     "prepack": "mv -f dist/* ./"
   },
   "files": [
@@ -30,12 +32,10 @@
   "exports": {
     ".": {
       "types": "./index.d.ts",
-      "require": "./index.js",
       "import": "./index.mjs"
     },
     "./date-picker": {
       "types": "./date-picker.d.ts",
-      "require": "./date-picker.js",
       "import": "./date-picker.mjs"
     }
   },
@@ -54,32 +54,24 @@
     }
   },
   "devDependencies": {
-    "@commitlint/cli": "^17.0.2",
-    "@commitlint/config-conventional": "^17.0.2",
-    "@date-io/date-fns": "^2.13.1",
-    "@emotion/styled": "^11.8.1",
-    "@mui/x-date-pickers": "^6.0.0",
-    "@testing-library/jest-dom": "^5.16.4",
-    "@testing-library/react": "^14.0.0",
-    "@testing-library/user-event": "^14.1.1",
-    "@tsconfig/vite-react": "^1.0.1",
-    "@types/jest": "^29.2.5",
-    "@types/react": "^18.0.26",
-    "date-fns": "^2.28.0",
-    "eslint": "^8.12.0",
-    "eslint-config-dasprid": "^0.1.12",
-    "eslint-plugin-react": "^7.29.4",
-    "husky": "^8.0.1",
-    "jest": "^29.3.1",
-    "jest-environment-jsdom": "^29.3.1",
-    "lint-staged": "^13.0.1",
+    "@biomejs/biome": "^1.6.3",
+    "@commitlint/cli": "^19.2.1",
+    "@commitlint/config-conventional": "^19.1.0",
+    "@date-io/date-fns": "^3.0.0",
+    "@emotion/styled": "^11.11.0",
+    "@mui/x-date-pickers": "^7.0.0",
+    "@testing-library/jest-dom": "^6.4.2",
+    "@testing-library/react": "^14.2.2",
+    "@testing-library/user-event": "^14.5.2",
+    "@tsconfig/vite-react": "^3.0.1",
+    "@types/react": "^18.2.70",
+    "date-fns": "^3.6.0",
+    "jsdom": "^24.0.0",
+    "lefthook": "^1.6.7",
     "react-dom": "^18.2.0",
-    "ts-jest": "^29.0.5",
-    "typescript": "^5.0.4",
-    "vite": "^4.2.2",
-    "vite-plugin-dts": "^2.3.0"
-  },
-  "lint-staged": {
-    "*.{ts,tsx}": "eslint --cache --fix"
+    "typescript": "^5.4.3",
+    "vite": "^5.2.6",
+    "vite-plugin-dts": "^3.7.3",
+    "vitest": "^1.4.0"
   }
 }

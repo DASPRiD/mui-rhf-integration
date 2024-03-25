@@ -1,172 +1,197 @@
-import '@testing-library/jest-dom';
-import {fireEvent, screen, waitFor} from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import {RhfAutocomplete} from '../src';
-import type {RhfAutocompleteProps} from '../src/RhfAutocomplete';
-import {createInitTest} from './initTest';
+import type { RhfAutocompleteProps } from "@/RhfAutocomplete.tsx";
+import "@testing-library/jest-dom";
+import { fireEvent, screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import { describe, expect, it } from "vitest";
+import { RhfAutocomplete } from "../src";
+import { createInitTest } from "./initTest";
 
 type TestFormValues = {
-    foo : string;
+    foo: string;
 };
 
 const initTest = createInitTest<
-    Omit<RhfAutocompleteProps<string, false, false, false>, 'name' | 'control' | 'options'>,
+    Omit<RhfAutocompleteProps<string, false, false, false>, "name" | "control" | "options">,
     TestFormValues
 >((control, props) => (
-    <RhfAutocomplete control={control} name="foo" options={[
-        'foo',
-        'bar',
-    ]} {...props}/>
+    <RhfAutocomplete<string, false, false, false, TestFormValues>
+        control={control}
+        name="foo"
+        options={["foo", "bar"]}
+        {...props}
+    />
 ));
 
 type Entity = {
-    id : string;
-    label : string;
+    id: string;
+    label: string;
 };
 
 const entityOptions = [
-    {id: '1', label: 'foo'},
-    {id: '2', label: 'bar'},
+    { id: "1", label: "foo" },
+    { id: "2", label: "bar" },
 ];
 
 const initEntitySingleTest = createInitTest<
-    Omit<RhfAutocompleteProps<Entity, false, false, false>, 'name' | 'control' | 'options'>,
+    Omit<RhfAutocompleteProps<Entity, false, false, false>, "name" | "control" | "options">,
     TestFormValues
 >((control, props) => (
-    <RhfAutocomplete control={control} name="foo" options={entityOptions} {...props}/>
+    <RhfAutocomplete<Entity, false, false, false, TestFormValues>
+        control={control}
+        name="foo"
+        options={entityOptions}
+        {...props}
+    />
 ));
 
 const initEntityMultipleTest = createInitTest<
-    Omit<RhfAutocompleteProps<Entity, true, false, false>, 'name' | 'control' | 'options'>,
+    Omit<RhfAutocompleteProps<Entity, true, false, false>, "name" | "control" | "options">,
     TestFormValues
 >((control, props) => (
-    <RhfAutocomplete control={control} name="foo" options={entityOptions} {...props}/>
+    <RhfAutocomplete<Entity, true, false, false, TestFormValues>
+        control={control}
+        name="foo"
+        options={entityOptions}
+        {...props}
+    />
 ));
 
-describe('RhfAutocomplete', () => {
-    it('should treat undefined as empty value', () => {
+describe("RhfAutocomplete", () => {
+    it("should treat undefined as empty value", () => {
         initTest({
             textFieldProps: {
-                label: 'Test field',
+                label: "Test field",
             },
         });
 
-        expect(screen.getByLabelText('Test field')).toHaveValue('');
+        expect(screen.getByLabelText("Test field")).toHaveValue("");
     });
 
-    it('should treat null as empty value', () => {
-        initTest({
-            textFieldProps: {
-                label: 'Test field',
+    it("should treat null as empty value", () => {
+        initTest(
+            {
+                textFieldProps: {
+                    label: "Test field",
+                },
             },
-        }, {
-            foo: null,
-        });
-
-        expect(screen.getByLabelText('Test field')).toHaveValue('');
-    });
-
-    it('should use default value', () => {
-        initTest({
-            textFieldProps: {
-                label: 'Test field',
+            {
+                foo: null,
             },
-        }, {
-            foo: 'foo',
-        });
+        );
 
-        expect(screen.getByLabelText('Test field')).toHaveValue('foo');
+        expect(screen.getByLabelText("Test field")).toHaveValue("");
     });
 
-    it('should change value', async () => {
+    it("should use default value", () => {
+        initTest(
+            {
+                textFieldProps: {
+                    label: "Test field",
+                },
+            },
+            {
+                foo: "foo",
+            },
+        );
+
+        expect(screen.getByLabelText("Test field")).toHaveValue("foo");
+    });
+
+    it("should change value", async () => {
         const form = initTest({
             textFieldProps: {
-                label: 'Test field',
+                label: "Test field",
             },
         });
 
         const user = userEvent.setup();
-        await user.click(screen.getByLabelText('Test field'));
-        await user.keyboard('bar');
-        await user.keyboard('{ArrowDown}');
-        await user.keyboard('{Enter}');
+        await user.click(screen.getByLabelText("Test field"));
+        await user.keyboard("bar");
+        await user.keyboard("{ArrowDown}");
+        await user.keyboard("{Enter}");
 
-        expect(form.getValues().foo).toBe('bar');
+        expect(form.getValues().foo).toBe("bar");
     });
 
-    it('should handle single value transformation', async () => {
-        const form = initEntitySingleTest({
-            textFieldProps: {
-                label: 'Test field',
+    it("should handle single value transformation", async () => {
+        const form = initEntitySingleTest(
+            {
+                textFieldProps: {
+                    label: "Test field",
+                },
+                optionToValue: (option) => option.id,
+                valueToOption: (value) => entityOptions.find((option) => option.id === value),
             },
-            optionToValue: option => option.id,
-            valueToOption: value => entityOptions.find(option => option.id === value),
-        }, {
-            foo: '1',
-        });
+            {
+                foo: "1",
+            },
+        );
 
-        expect(screen.getByLabelText('Test field')).toHaveValue('foo');
+        expect(screen.getByLabelText("Test field")).toHaveValue("foo");
 
         const user = userEvent.setup();
-        await user.click(screen.getByLabelText('Test field'));
-        await user.keyboard('bar');
-        await user.keyboard('{ArrowDown}');
-        await user.keyboard('{Enter}');
+        await user.click(screen.getByLabelText("Test field"));
+        await user.keyboard("bar");
+        await user.keyboard("{ArrowDown}");
+        await user.keyboard("{Enter}");
 
-        expect(form.getValues().foo).toBe('2');
+        expect(form.getValues().foo).toBe("2");
     });
 
-    it('should handle multiple value transformation', async () => {
-        const form = initEntityMultipleTest({
-            textFieldProps: {
-                label: 'Test field',
+    it("should handle multiple value transformation", async () => {
+        const form = initEntityMultipleTest(
+            {
+                textFieldProps: {
+                    label: "Test field",
+                },
+                optionToValue: (option) => option.id,
+                valueToOption: (value) => entityOptions.find((option) => option.id === value),
+                multiple: true,
             },
-            optionToValue: option => option.id,
-            valueToOption: value => entityOptions.find(option => option.id === value),
-            multiple: true,
-        }, {
-            foo: ['1'],
-        });
+            {
+                foo: ["1"],
+            },
+        );
 
-        expect(screen.getByLabelText('Test field').parentNode).toHaveTextContent('foo');
+        expect(screen.getByLabelText("Test field").parentNode).toHaveTextContent("foo");
 
         const user = userEvent.setup();
-        await user.click(screen.getByLabelText('Test field'));
-        await user.keyboard('bar');
-        await user.keyboard('{ArrowDown}');
-        await user.keyboard('{Enter}');
+        await user.click(screen.getByLabelText("Test field"));
+        await user.keyboard("bar");
+        await user.keyboard("{ArrowDown}");
+        await user.keyboard("{Enter}");
 
-        expect(form.getValues().foo).toEqual(['1', '2']);
+        expect(form.getValues().foo).toEqual(["1", "2"]);
     });
 
-    it('should display helper text without error', () => {
+    it("should display helper text without error", () => {
         initTest({
             textFieldProps: {
-                helperText: 'Helper text',
+                helperText: "Helper text",
             },
         });
 
-        expect(screen.getByText('Helper text')).toBeInTheDocument();
+        expect(screen.getByText("Helper text")).toBeInTheDocument();
     });
 
-    it('should display error', async () => {
+    it("should display error", async () => {
         initTest({
             textFieldProps: {
-                label: 'Test field',
-                helperText: 'Helper text',
+                label: "Test field",
+                helperText: "Helper text",
             },
             rules: {
-                required: 'Required',
+                required: "Required",
             },
         });
 
-        fireEvent.click(screen.getByText('Submit'));
+        fireEvent.click(screen.getByText("Submit"));
 
         await waitFor(() => {
-            expect(screen.getByText('Required')).toBeInTheDocument();
+            expect(screen.getByText("Required")).toBeInTheDocument();
         });
 
-        expect(screen.getByLabelText('Test field')).toHaveFocus();
-        expect(screen.getByLabelText('Test field').parentNode).toHaveClass('Mui-error');
+        expect(screen.getByLabelText("Test field")).toHaveFocus();
+        expect(screen.getByLabelText("Test field").parentNode).toHaveClass("Mui-error");
     });
 });
