@@ -61,7 +61,7 @@ const RhfAutocomplete = <
         if (loading) {
             value = [];
         } else if (multiple) {
-            /* istanbul ignore next */
+            /* c8 ignore next */
             if (!Array.isArray(value)) {
                 console.warn("Received a non-array value for a multiple Autocomplete");
                 value = [];
@@ -93,7 +93,7 @@ const RhfAutocomplete = <
                     return;
                 }
 
-                /* istanbul ignore next */
+                /* c8 ignore next */
                 console.warn("Autocomplete is set to multiple but value is an not array");
             }}
             value={value as AutocompleteValue<T, Multiple, DisableClearable, FreeSolo>}
