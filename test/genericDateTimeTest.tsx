@@ -5,7 +5,7 @@ import "@testing-library/jest-dom";
 import { fireEvent, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { format } from "date-fns";
-import type { ReactNode } from 'react';
+import type { ReactNode } from "react";
 import type { Control } from "react-hook-form";
 import type { RegisterOptions } from "react-hook-form";
 import { beforeEach, expect, it, vi } from "vitest";
