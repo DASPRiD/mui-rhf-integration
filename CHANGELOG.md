@@ -1,3 +1,10 @@
+## [4.0.2](https://github.com/dasprid/mui-rhf-integration/compare/v4.0.1...v4.0.2) (2024-03-26)
+
+
+### Bug Fixes
+
+* update exports statements ([d7ae8b9](https://github.com/dasprid/mui-rhf-integration/commit/d7ae8b97f8826ce17ac7b566c208b88ccf6a640c))
+
 ## [4.0.1](https://github.com/dasprid/mui-rhf-integration/compare/v4.0.0...v4.0.1) (2024-03-26)
 
 
