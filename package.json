@@ -32,11 +32,11 @@
   "exports": {
     ".": {
       "types": "./index.d.ts",
-      "import": "./index.mjs"
+      "import": "./index.js"
     },
     "./date-picker": {
       "types": "./date-picker.d.ts",
-      "import": "./date-picker.mjs"
+      "import": "./date-picker.js"
     }
   },
   "main": "./dist/index.js",
