@@ -44,7 +44,7 @@
   "types": "./dist/index.d.ts",
   "peerDependencies": {
     "@mui/material": "^5.11.0",
-    "@mui/x-date-pickers": "^6.0.0",
+    "@mui/x-date-pickers": "^7.0.0",
     "react": "^18.2.0",
     "react-hook-form": "^7.42.0"
   },
