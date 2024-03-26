@@ -59,7 +59,7 @@ const RhfAutocomplete = <
         value = null;
     } else if (value && valueToOption) {
         if (loading) {
-            value = [];
+            value = multiple ? [] : null;
         } else if (multiple) {
             /* c8 ignore next */
             if (!Array.isArray(value)) {
