@@ -1,3 +1,10 @@
+## [4.0.3](https://github.com/dasprid/mui-rhf-integration/compare/v4.0.2...v4.0.3) (2024-03-26)
+
+
+### Bug Fixes
+
+* **RhfAutocomplete:** default to null value for single autocomplete during loading ([0ab7f23](https://github.com/dasprid/mui-rhf-integration/commit/0ab7f238c64764c989b2069f68360c3bd696978c))
+
 ## [4.0.2](https://github.com/dasprid/mui-rhf-integration/compare/v4.0.1...v4.0.2) (2024-03-26)
 
 
