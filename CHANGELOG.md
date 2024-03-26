@@ -1,3 +1,10 @@
+## [4.0.1](https://github.com/dasprid/mui-rhf-integration/compare/v4.0.0...v4.0.1) (2024-03-26)
+
+
+### Bug Fixes
+
+* match peer dependency to dev dependency ([2af2b55](https://github.com/dasprid/mui-rhf-integration/commit/2af2b55f743fc4ffe35c3f2c5efa498aee15fe95))
+
 # [4.0.0](https://github.com/dasprid/mui-rhf-integration/compare/v3.4.1...v4.0.0) (2024-03-25)
 
 
