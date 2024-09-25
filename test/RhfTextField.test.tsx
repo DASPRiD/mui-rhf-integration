@@ -10,9 +10,10 @@ type TestFormValues = {
     foo: string;
 };
 
-const initTest = createInitTest<Omit<RhfTextFieldProps, "name" | "control">, TestFormValues>(
-    (control, props) => <RhfTextField<TestFormValues> control={control} name="foo" {...props} />,
-);
+const initTest = createInitTest<
+    Omit<RhfTextFieldProps<TestFormValues>, "name" | "control">,
+    TestFormValues
+>((control, props) => <RhfTextField control={control} name="foo" {...props} />);
 
 describe("RhfTextField", () => {
     it("should treat undefined as empty value", () => {

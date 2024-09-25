@@ -11,7 +11,7 @@ export type RhfTextFieldProps<
     control: Control<TFieldValues>;
     name: TName;
     rules?: Omit<
-        RegisterOptions<TFieldValues, TName>,
+        RegisterOptions<NoInfer<TFieldValues>, NoInfer<TName>>,
         "valueAsNumber" | "valueAsDate" | "setValueAs" | "disabled"
     >;
     maxCharacters?: number;

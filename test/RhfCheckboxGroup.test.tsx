@@ -11,10 +11,10 @@ type TestFormValues = {
 };
 
 const initTest = createInitTest<
-    Omit<RhfCheckboxGroupProps, "name" | "control" | "label" | "options">,
+    Omit<RhfCheckboxGroupProps<TestFormValues, "foo">, "name" | "control" | "label" | "options">,
     TestFormValues
 >((control, props) => (
-    <RhfCheckboxGroup<TestFormValues>
+    <RhfCheckboxGroup
         control={control}
         name="foo"
         label="Test checkbox group"

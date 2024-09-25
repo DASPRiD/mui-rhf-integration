@@ -11,14 +11,15 @@ type TestFormValues = {
     foo: boolean;
 };
 
-const initTest = createInitTest<Omit<RhfCheckboxProps, "name" | "control">, TestFormValues>(
-    (control, props) => (
-        <FormControlLabel
-            control={<RhfCheckbox<TestFormValues> control={control} name="foo" {...props} />}
-            label="Test checkbox"
-        />
-    ),
-);
+const initTest = createInitTest<
+    Omit<RhfCheckboxProps<TestFormValues>, "name" | "control">,
+    TestFormValues
+>((control, props) => (
+    <FormControlLabel
+        control={<RhfCheckbox control={control} name="foo" {...props} />}
+        label="Test checkbox"
+    />
+));
 
 describe("RhfCheckbox", () => {
     it("should treat undefined as false value", () => {

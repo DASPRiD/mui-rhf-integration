@@ -11,10 +11,10 @@ type TestFormValues = {
 };
 
 const initTest = createInitTest<
-    Omit<RhfRadioGroupProps, "name" | "control" | "label" | "options">,
+    Omit<RhfRadioGroupProps<TestFormValues>, "name" | "control" | "label" | "options">,
     TestFormValues
 >((control, props) => (
-    <RhfRadioGroup<TestFormValues>
+    <RhfRadioGroup
         control={control}
         name="foo"
         label="Test checkbox group"

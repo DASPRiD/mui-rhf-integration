@@ -43,7 +43,7 @@
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "peerDependencies": {
-    "@mui/material": "^5.11.0",
+    "@mui/material": "^6.0.0",
     "@mui/x-date-pickers": "^7.0.0",
     "react": "^18.2.0",
     "react-hook-form": "^7.42.0"
@@ -54,25 +54,24 @@
     }
   },
   "devDependencies": {
-    "@biomejs/biome": "^1.6.3",
-    "@commitlint/cli": "^19.2.1",
-    "@commitlint/config-conventional": "^19.1.0",
+    "@biomejs/biome": "^1.9.2",
+    "@commitlint/cli": "^19.5.0",
+    "@commitlint/config-conventional": "^19.5.0",
     "@date-io/date-fns": "^3.0.0",
-    "@emotion/styled": "^11.11.0",
-    "@mui/x-date-pickers": "^7.0.0",
-    "@testing-library/jest-dom": "^6.4.2",
-    "@testing-library/react": "^14.2.2",
+    "@emotion/styled": "^11.13.0",
+    "@testing-library/jest-dom": "^6.5.0",
+    "@testing-library/react": "^16.0.1",
     "@testing-library/user-event": "^14.5.2",
-    "@tsconfig/vite-react": "^3.0.1",
-    "@types/react": "^18.2.70",
-    "@vitest/coverage-v8": "^1.4.0",
-    "date-fns": "^3.6.0",
-    "jsdom": "^24.0.0",
-    "lefthook": "^1.6.7",
-    "react-dom": "^18.2.0",
-    "typescript": "^5.4.3",
-    "vite": "^5.2.6",
-    "vite-plugin-dts": "^3.7.3",
-    "vitest": "^1.4.0"
+    "@tsconfig/vite-react": "^3.0.2",
+    "@types/react": "^18.3.9",
+    "@vitest/coverage-v8": "^2.1.1",
+    "date-fns": "^3.2.0",
+    "jsdom": "^25.0.1",
+    "lefthook": "^1.7.16",
+    "react-dom": "^18.3.1",
+    "typescript": "^5.6.2",
+    "vite": "^5.4.8",
+    "vite-plugin-dts": "^4.2.2",
+    "vitest": "^2.1.1"
   }
 }

@@ -11,15 +11,13 @@ type TestFormValues = {
 };
 
 const initTest = createInitTest<
-    Omit<RhfAutocompleteProps<string, false, false, false>, "name" | "control" | "options">,
+    Omit<
+        RhfAutocompleteProps<string, false, false, false, TestFormValues>,
+        "name" | "control" | "options"
+    >,
     TestFormValues
 >((control, props) => (
-    <RhfAutocomplete<string, false, false, false, TestFormValues>
-        control={control}
-        name="foo"
-        options={["foo", "bar"]}
-        {...props}
-    />
+    <RhfAutocomplete control={control} name="foo" options={["foo", "bar"]} {...props} />
 ));
 
 type Entity = {
@@ -33,27 +31,23 @@ const entityOptions = [
 ];
 
 const initEntitySingleTest = createInitTest<
-    Omit<RhfAutocompleteProps<Entity, false, false, false>, "name" | "control" | "options">,
+    Omit<
+        RhfAutocompleteProps<Entity, false, false, false, TestFormValues>,
+        "name" | "control" | "options"
+    >,
     TestFormValues
 >((control, props) => (
-    <RhfAutocomplete<Entity, false, false, false, TestFormValues>
-        control={control}
-        name="foo"
-        options={entityOptions}
-        {...props}
-    />
+    <RhfAutocomplete control={control} name="foo" options={entityOptions} {...props} />
 ));
 
 const initEntityMultipleTest = createInitTest<
-    Omit<RhfAutocompleteProps<Entity, true, false, false>, "name" | "control" | "options">,
+    Omit<
+        RhfAutocompleteProps<Entity, true, false, false, TestFormValues>,
+        "name" | "control" | "options"
+    >,
     TestFormValues
 >((control, props) => (
-    <RhfAutocomplete<Entity, true, false, false, TestFormValues>
-        control={control}
-        name="foo"
-        options={entityOptions}
-        {...props}
-    />
+    <RhfAutocomplete control={control} name="foo" options={entityOptions} {...props} />
 ));
 
 describe("RhfAutocomplete", () => {

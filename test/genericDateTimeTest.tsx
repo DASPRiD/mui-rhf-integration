@@ -6,9 +6,8 @@ import { fireEvent, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { format } from "date-fns";
 import type { ReactNode } from "react";
-import type { Control } from "react-hook-form";
-import type { RegisterOptions } from "react-hook-form";
-import { beforeEach, expect, it, vi } from "vitest";
+import type { Control, RegisterOptions } from "react-hook-form";
+import { expect, it } from "vitest";
 import { createInitTest } from "./initTest";
 
 type TestFormValues = {
@@ -42,17 +41,8 @@ export const runGenericDateTimeTest = (
         const testField = await waitFor(() =>
             screen.getByLabelText<HTMLInputElement>("Test field"),
         );
-        // @see https://github.com/mui/mui-x/issues/8150
-        return testField.value.replace(/[\u2066\u2068\u2069]/g, "");
+        return testField.value;
     };
-
-    beforeEach(() => {
-        window.matchMedia = vi.fn().mockImplementation((query) => ({
-            matches: query === "(pointer: fine)",
-            addListener: vi.fn(),
-            removeListener: vi.fn(),
-        }));
-    });
 
     it("should treat undefined as empty value", async () => {
         initTest();
