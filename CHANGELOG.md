@@ -1,3 +1,15 @@
+# [5.0.0](https://github.com/dasprid/mui-rhf-integration/compare/v4.0.3...v5.0.0) (2024-09-25)
+
+
+### Features
+
+* update to MUI v6 ([5e0a76d](https://github.com/dasprid/mui-rhf-integration/commit/5e0a76dc0377ed7bfc6bc54629a992a3d883bd2b))
+
+
+### BREAKING CHANGES
+
+* This and future versions require MUI 6
+
 ## [4.0.3](https://github.com/dasprid/mui-rhf-integration/compare/v4.0.2...v4.0.3) (2024-03-26)
 
 
