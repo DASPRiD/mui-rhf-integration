@@ -13,10 +13,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Use pnpm 8.x
+      - name: Use pnpm
         uses: pnpm/action-setup@v3
-        with:
-          version: 8
 
       - name: Use Node.js 20.x
         uses: actions/setup-node@v4
@@ -28,10 +26,10 @@ jobs:
         run: pnpm install
 
       - name: Biome CI
-        run: pnpm exec biome ci .
+        run: pnpm biome ci .
 
       - name: TypeCheck
-        run: pnpm exec tsc
+        run: pnpm tsc --noEmit
 
       - name: Test
         run: pnpm coverage
