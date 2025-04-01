@@ -35,12 +35,13 @@ install the `@mui/x-date-pickers` package.
 import {useForm} from 'react-hook-form';
 import {RhfTextField} from 'mui-rhf-integration';
 import {Button} from '@mui/material';
+import {ReactNode} from "react";
 
 type FieldValues = {
-    title : string;
+    title: string;
 };
 
-const MyForm = () : JSX.Element => {
+const MyForm = (): ReactNode => {
     const form = useForm<FieldValues>();
 
     return (
