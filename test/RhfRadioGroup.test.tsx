@@ -1,4 +1,4 @@
-import type { RhfRadioGroupProps } from "@/RhfRadioGroup.tsx";
+import type { RhfRadioGroupProps } from "../src";
 import "@testing-library/jest-dom";
 import { fireEvent, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";

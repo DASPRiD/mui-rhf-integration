@@ -4,7 +4,7 @@ import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it, vi } from "vitest";
 import { RhfCheckbox } from "../src";
-import type { RhfCheckboxProps } from "../src/RhfCheckbox";
+import type { RhfCheckboxProps } from "../src";
 import { createInitTest } from "./initTest";
 
 type TestFormValues = {

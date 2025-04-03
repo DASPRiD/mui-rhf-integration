@@ -1,9 +1,9 @@
-import type { RhfAutocompleteProps } from "@/RhfAutocomplete.tsx";
+import type { RhfAutocompleteProps } from "../src";
+import { RhfAutocomplete } from "../src";
 import "@testing-library/jest-dom";
 import { fireEvent, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it } from "vitest";
-import { RhfAutocomplete } from "../src";
 import { createInitTest } from "./initTest";
 
 type TestFormValues = {

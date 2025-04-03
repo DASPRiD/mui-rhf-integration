@@ -3,7 +3,7 @@ import { fireEvent, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it, vi } from "vitest";
 import { RhfCheckboxGroup } from "../src";
-import type { RhfCheckboxGroupProps } from "../src/RhfCheckboxGroup";
+import type { RhfCheckboxGroupProps } from "../src";
 import { createInitTest } from "./initTest";
 
 type TestFormValues = {

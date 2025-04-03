@@ -1,4 +1,4 @@
-import type { RhfTextFieldProps } from "@/RhfTextField.tsx";
+import type { RhfTextFieldProps } from "../src";
 import "@testing-library/jest-dom";
 import { fireEvent, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";

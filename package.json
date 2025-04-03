@@ -26,7 +26,8 @@
   },
   "files": [
     "index.*",
-    "date-picker.*"
+    "date-picker.*",
+    "date-picker"
   ],
   "sideEffects": false,
   "exports": {
@@ -35,7 +36,7 @@
       "import": "./index.js"
     },
     "./date-picker": {
-      "types": "./date-picker.d.ts",
+      "types": "./date-picker/index.d.ts",
       "import": "./date-picker.js"
     }
   },
