@@ -1,3 +1,10 @@
+## [6.0.1](https://github.com/dasprid/mui-rhf-integration/compare/v6.0.0...v6.0.1) (2025-04-03)
+
+
+### Bug Fixes
+
+* disable rollupTypes ([bdf8e15](https://github.com/dasprid/mui-rhf-integration/commit/bdf8e15a680edf21d3abe2ed7b19e7f54ed7c3e6))
+
 # [6.0.0](https://github.com/dasprid/mui-rhf-integration/compare/v5.0.0...v6.0.0) (2025-04-01)
 
 
