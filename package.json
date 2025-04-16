@@ -21,28 +21,25 @@
     "test": "vitest",
     "coverage": "vitest run --coverage",
     "format": "biome format . --write",
-    "check": "biome check . --write",
-    "prepack": "mv -f dist/* ./"
+    "check": "biome check . --write"
   },
   "files": [
-    "index.*",
-    "date-picker.*",
-    "date-picker"
+    "dist/**/*"
   ],
   "sideEffects": false,
   "exports": {
     ".": {
-      "types": "./index.d.ts",
-      "import": "./index.js"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
     },
     "./date-picker": {
-      "types": "./date-picker/index.d.ts",
-      "import": "./date-picker.js"
+      "types": "./dist/date-picker/index.d.ts",
+      "import": "./dist/date-picker.js"
     }
   },
-  "main": "./index.js",
-  "module": "./index.mjs",
-  "types": "./index.d.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "peerDependencies": {
     "@mui/material": "^7.0.0",
     "@mui/x-date-pickers": "^7.0.0",
