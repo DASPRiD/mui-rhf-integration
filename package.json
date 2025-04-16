@@ -1,6 +1,6 @@
 {
   "name": "mui-rhf-integration",
-  "version": "6.0.1",
+  "version": "6.0.2",
   "description": "React Hook Form integration for MUI with strict TypeScript handling based on form context.",
   "keywords": [
     "react",

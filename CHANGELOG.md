@@ -1,3 +1,10 @@
+## [6.0.2](https://github.com/dasprid/mui-rhf-integration/compare/v6.0.1...v6.0.2) (2025-04-16)
+
+
+### Bug Fixes
+
+* keep release files in dist folder ([b703ad0](https://github.com/dasprid/mui-rhf-integration/commit/b703ad09360e8486a0d383afd1d55ccca39af10f))
+
 ## [6.0.1](https://github.com/dasprid/mui-rhf-integration/compare/v6.0.0...v6.0.1) (2025-04-03)
 
 
