@@ -1,3 +1,10 @@
+# [6.1.0](https://github.com/dasprid/mui-rhf-integration/compare/v6.0.2...v6.1.0) (2025-04-17)
+
+
+### Features
+
+* add support for RHF 7.55.0 ([db27cda](https://github.com/dasprid/mui-rhf-integration/commit/db27cda7156a33819ceb2f91a69ca3a3bb323ecb))
+
 ## [6.0.2](https://github.com/dasprid/mui-rhf-integration/compare/v6.0.1...v6.0.2) (2025-04-16)
 
 
