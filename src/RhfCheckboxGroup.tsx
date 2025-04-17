@@ -19,8 +19,11 @@ export type CheckboxOption = {
 export type RhfCheckboxGroupProps<
     TFieldValues extends FieldValues = FieldValues,
     TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
+    // biome-ignore lint/suspicious/noExplicitAny: defined by RHF
+    TContext = any,
+    TTransformedValues = FieldValues,
 > = Omit<FormControlProps<"fieldset">, "error" | "component" | "ref"> & {
-    control: Control<TFieldValues>;
+    control: Control<TFieldValues, TContext, TTransformedValues>;
     name: TName;
     rules?: Omit<
         RegisterOptions<TFieldValues, TName>,
@@ -36,6 +39,9 @@ export type RhfCheckboxGroupProps<
 const RhfCheckboxGroup = <
     TFieldValues extends FieldValues = FieldValues,
     TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
+    // biome-ignore lint/suspicious/noExplicitAny: defined by RHF
+    TContext = any,
+    TTransformedValues = FieldValues,
 >({
     control,
     name,
@@ -46,7 +52,7 @@ const RhfCheckboxGroup = <
     formLabelProps,
     formGroupProps,
     ...formControlProps
-}: RhfCheckboxGroupProps<TFieldValues, TName>): ReactNode => {
+}: RhfCheckboxGroupProps<TFieldValues, TName, TContext, TTransformedValues>): ReactNode => {
     const { field, fieldState } = useController({ control, name, rules });
     let selectedValues = field.value as unknown;
 

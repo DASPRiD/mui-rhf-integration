@@ -8,8 +8,11 @@ import { useController } from "react-hook-form";
 export type RhfDateTimePickerProps<
     TFieldValues extends FieldValues = FieldValues,
     TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
+    // biome-ignore lint/suspicious/noExplicitAny: defined by RHF
+    TContext = any,
+    TTransformedValues = FieldValues,
 > = Omit<DateTimePickerProps<PickerValidDate>, "error" | "onChange" | "value" | "renderInput"> & {
-    control: Control<TFieldValues>;
+    control: Control<TFieldValues, TContext, TTransformedValues>;
     name: TName;
     rules?: Omit<
         RegisterOptions<NoInfer<TFieldValues>, NoInfer<TName>>,
@@ -24,13 +27,16 @@ export type RhfDateTimePickerProps<
 const RhfDateTimePicker = <
     TFieldValues extends FieldValues = FieldValues,
     TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
+    // biome-ignore lint/suspicious/noExplicitAny: defined by RHF
+    TContext = any,
+    TTransformedValues = FieldValues,
 >({
     control,
     name,
     rules,
     textFieldProps,
     ...datePickerProps
-}: RhfDateTimePickerProps<TFieldValues, TName>): ReactNode => {
+}: RhfDateTimePickerProps<TFieldValues, TName, TContext, TTransformedValues>): ReactNode => {
     const { field, fieldState } = useController({ control, name, rules });
     let value = field.value as PickerValidDate | null | undefined;
 

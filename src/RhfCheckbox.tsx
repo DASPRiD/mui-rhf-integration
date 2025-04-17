@@ -7,19 +7,25 @@ import { useController } from "react-hook-form";
 export type RhfCheckboxProps<
     TFieldValues extends FieldValues = FieldValues,
     TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
+    // biome-ignore lint/suspicious/noExplicitAny: defined by RHF
+    TContext = any,
+    TTransformedValues = FieldValues,
 > = Omit<CheckboxProps, "checked" | "onChange" | "onBlur" | "value" | "ref"> & {
-    control: Control<TFieldValues>;
+    control: Control<TFieldValues, TContext, TTransformedValues>;
     name: TName;
 };
 
 const RhfCheckbox = <
     TFieldValues extends FieldValues = FieldValues,
     TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
+    // biome-ignore lint/suspicious/noExplicitAny: defined by RHF
+    TContext = any,
+    TTransformedValues = FieldValues,
 >({
     control,
     name,
     ...rest
-}: RhfCheckboxProps<TFieldValues, TName>): ReactNode => {
+}: RhfCheckboxProps<TFieldValues, TName, TContext, TTransformedValues>): ReactNode => {
     const { field } = useController({ control, name });
     let value = field.value as unknown;
 

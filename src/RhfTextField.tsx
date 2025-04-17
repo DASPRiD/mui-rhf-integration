@@ -7,8 +7,11 @@ import { useController } from "react-hook-form";
 export type RhfTextFieldProps<
     TFieldValues extends FieldValues = FieldValues,
     TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
+    // biome-ignore lint/suspicious/noExplicitAny: defined by RHF
+    TContext = any,
+    TTransformedValues = FieldValues,
 > = Omit<TextFieldProps, "error" | "onChange" | "onBlur" | "value" | "inputRef"> & {
-    control: Control<TFieldValues>;
+    control: Control<TFieldValues, TContext, TTransformedValues>;
     name: TName;
     rules?: Omit<
         RegisterOptions<NoInfer<TFieldValues>, NoInfer<TName>>,
@@ -20,13 +23,16 @@ export type RhfTextFieldProps<
 const RhfTextField = <
     TFieldValues extends FieldValues = FieldValues,
     TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
+    // biome-ignore lint/suspicious/noExplicitAny: defined by RHF
+    TContext = any,
+    TTransformedValues = FieldValues,
 >({
     control,
     name,
     rules,
     maxCharacters,
     ...rest
-}: RhfTextFieldProps<TFieldValues, TName>): ReactNode => {
+}: RhfTextFieldProps<TFieldValues, TName, TContext, TTransformedValues>): ReactNode => {
     const { field, fieldState } = useController({ control, name, rules });
     let value = field.value as unknown;
 

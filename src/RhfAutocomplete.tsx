@@ -12,11 +12,14 @@ export type RhfAutocompleteProps<
     FreeSolo extends boolean | undefined,
     TFieldValues extends FieldValues = FieldValues,
     TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
+    // biome-ignore lint/suspicious/noExplicitAny: defined by RHF
+    TContext = any,
+    TTransformedValues = FieldValues,
 > = Omit<
     AutocompleteProps<T, Multiple, DisableClearable, FreeSolo>,
     "error" | "onChange" | "onBlur" | "value" | "renderInput"
 > & {
-    control: Control<TFieldValues>;
+    control: Control<TFieldValues, TContext, TTransformedValues>;
     name: TName;
     rules?: Omit<
         RegisterOptions<NoInfer<TFieldValues>, NoInfer<TName>>,
@@ -34,6 +37,9 @@ const RhfAutocomplete = <
     FreeSolo extends boolean | undefined,
     TFieldValues extends FieldValues = FieldValues,
     TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
+    // biome-ignore lint/suspicious/noExplicitAny: defined by RHF
+    TContext = any,
+    TTransformedValues = FieldValues,
 >({
     control,
     name,
@@ -50,7 +56,9 @@ const RhfAutocomplete = <
     DisableClearable,
     FreeSolo,
     TFieldValues,
-    TName
+    TName,
+    TContext,
+    TTransformedValues
 >): ReactNode => {
     const { field, fieldState } = useController({ control, name, rules });
     let value = field.value as unknown;
