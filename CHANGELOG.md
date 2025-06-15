@@ -1,3 +1,15 @@
+# [7.0.0](https://github.com/dasprid/mui-rhf-integration/compare/v6.1.0...v7.0.0) (2025-06-15)
+
+
+### Features
+
+* **date-picker:** update to mui-x v8 ([4168039](https://github.com/dasprid/mui-rhf-integration/commit/416803995d8fba1e218611f81679f2f2170a342f))
+
+
+### BREAKING CHANGES
+
+* **date-picker:** this will require you to upgrade to mui-x v8
+
 # [6.1.0](https://github.com/dasprid/mui-rhf-integration/compare/v6.0.2...v6.1.0) (2025-04-17)
 
 
