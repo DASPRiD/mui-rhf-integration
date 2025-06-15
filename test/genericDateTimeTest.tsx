@@ -1,17 +1,20 @@
 import type { TextFieldProps } from "@mui/material";
 import { LocalizationProvider } from "@mui/x-date-pickers";
-import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFnsV3";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import "@testing-library/jest-dom";
 import { fireEvent, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { format } from "date-fns";
+import dayjs, { type Dayjs } from "dayjs";
+import utc from "dayjs/plugin/utc";
 import type { ReactNode } from "react";
 import type { Control, RegisterOptions } from "react-hook-form";
 import { expect, it } from "vitest";
 import { createInitTest } from "./initTest";
 
+dayjs.extend(utc);
+
 type TestFormValues = {
-    foo: Date;
+    foo: Dayjs;
 };
 
 type RenderProps = {
@@ -27,19 +30,21 @@ type RenderComponent = (control: Control<TestFormValues>, props?: RenderProps) =
 
 export const runGenericDateTimeTest = (
     renderComponent: RenderComponent,
-    validDefaultValue: Date,
+    validDefaultValue: Dayjs,
     expectedTextValue: string,
     formatString: string,
 ): void => {
     const initTest = createInitTest<RenderProps, TestFormValues>((control, props) => (
-        <LocalizationProvider dateAdapter={AdapterDateFns}>
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
             {renderComponent(control, { label: "Test field", ...props })}
         </LocalizationProvider>
     ));
 
     const getTestFieldValue = async (): Promise<string> => {
         const testField = await waitFor(() =>
-            screen.getByLabelText<HTMLInputElement>("Test field"),
+            screen.getByLabelText<HTMLInputElement>("Test field", {
+                selector: "input.MuiPickersInputBase-input",
+            }),
         );
         return testField.value;
     };
@@ -69,12 +74,15 @@ export const runGenericDateTimeTest = (
     it("should change value", async () => {
         const form = initTest();
 
-        const testField = await waitFor(() => screen.getByLabelText("Test field"));
+        const testField = await waitFor(() =>
+            screen.getByLabelText("Test field", { selector: "input.MuiPickersInputBase-input" }),
+        );
         const user = userEvent.setup();
-        await user.click(testField);
+        await user.click(testField.parentElement as HTMLElement);
+
         await user.keyboard(expectedTextValue);
 
-        expect(format(form.getValues().foo, formatString)).toBe(expectedTextValue);
+        expect(form.getValues().foo.format(formatString)).toBe(expectedTextValue);
     });
 
     it("should display helper text without error", async () => {
@@ -84,7 +92,9 @@ export const runGenericDateTimeTest = (
             },
         });
 
-        await waitFor(() => screen.getByLabelText("Test field"));
+        await waitFor(() =>
+            screen.getByLabelText("Test field", { selector: "input.MuiPickersInputBase-input" }),
+        );
         expect(screen.getByText("Helper text")).toBeInTheDocument();
     });
 
@@ -98,7 +108,9 @@ export const runGenericDateTimeTest = (
             },
         });
 
-        const testField = await waitFor(() => screen.getByLabelText("Test field"));
+        const testField = await waitFor(() =>
+            screen.getByLabelText("Test field", { selector: "input.MuiPickersInputBase-input" }),
+        );
         fireEvent.click(screen.getByText("Submit"));
 
         await waitFor(() => {

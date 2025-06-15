@@ -11,7 +11,7 @@ export type RhfDatePickerProps<
     // biome-ignore lint/suspicious/noExplicitAny: defined by RHF
     TContext = any,
     TTransformedValues = FieldValues,
-> = Omit<DatePickerProps<PickerValidDate>, "error" | "onChange" | "value" | "renderInput"> & {
+> = Omit<DatePickerProps<boolean>, "error" | "onChange" | "value" | "renderInput"> & {
     control: Control<TFieldValues, TContext, TTransformedValues>;
     name: TName;
     rules?: Omit<
