@@ -1,3 +1,10 @@
+## [7.0.1](https://github.com/DASPRiD/mui-rhf-integration/compare/v7.0.0...v7.0.1) (2025-10-23)
+
+
+### Bug Fixes
+
+* add provenance attestation ([5ddcf5d](https://github.com/DASPRiD/mui-rhf-integration/commit/5ddcf5d3464357851dbcfd47994bde2a5618fd28))
+
 # [7.0.0](https://github.com/dasprid/mui-rhf-integration/compare/v6.1.0...v7.0.0) (2025-06-15)
 
 
