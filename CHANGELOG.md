@@ -1,3 +1,10 @@
+## [7.0.3](https://github.com/DASPRiD/mui-rhf-integration/compare/v7.0.2...v7.0.3) (2025-12-01)
+
+
+### Bug Fixes
+
+* update generic types ([f01f67e](https://github.com/DASPRiD/mui-rhf-integration/commit/f01f67e361fc4dc75f1fe456985c711737731e28))
+
 ## [7.0.2](https://github.com/DASPRiD/mui-rhf-integration/compare/v7.0.1...v7.0.2) (2025-10-23)
 
 
