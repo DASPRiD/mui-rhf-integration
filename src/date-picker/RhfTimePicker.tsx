@@ -10,7 +10,7 @@ export type RhfTimePickerProps<
     TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
     // biome-ignore lint/suspicious/noExplicitAny: defined by RHF
     TContext = any,
-    TTransformedValues = FieldValues,
+    TTransformedValues = TFieldValues,
 > = Omit<TimePickerProps<boolean>, "error" | "onChange" | "value" | "renderInput"> & {
     control: Control<TFieldValues, TContext, TTransformedValues>;
     name: TName;
@@ -29,7 +29,7 @@ const RhfTimePicker = <
     TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
     // biome-ignore lint/suspicious/noExplicitAny: defined by RHF
     TContext = any,
-    TTransformedValues = FieldValues,
+    TTransformedValues = TFieldValues,
 >({
     control,
     name,

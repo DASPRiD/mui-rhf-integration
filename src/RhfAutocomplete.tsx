@@ -1,22 +1,27 @@
-import type { AutocompleteProps, AutocompleteValue, TextFieldProps } from "@mui/material";
+import type {
+    AutocompleteProps,
+    AutocompleteValue,
+    ChipTypeMap,
+    TextFieldProps,
+} from "@mui/material";
 import { Autocomplete, TextField } from "@mui/material";
-import type { ReactNode } from "react";
-import type { Control } from "react-hook-form";
+import type { ElementType, ReactNode } from "react";
+import type { Control, FieldPath, FieldValues, RegisterOptions } from "react-hook-form";
 import { useController } from "react-hook-form";
-import type { FieldPath, FieldValues, RegisterOptions } from "react-hook-form";
 
 export type RhfAutocompleteProps<
     T,
     Multiple extends boolean | undefined,
     DisableClearable extends boolean | undefined,
     FreeSolo extends boolean | undefined,
+    ChipComponent extends ElementType = ChipTypeMap["defaultComponent"],
     TFieldValues extends FieldValues = FieldValues,
     TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
     // biome-ignore lint/suspicious/noExplicitAny: defined by RHF
     TContext = any,
-    TTransformedValues = FieldValues,
+    TTransformedValues = TFieldValues,
 > = Omit<
-    AutocompleteProps<T, Multiple, DisableClearable, FreeSolo>,
+    AutocompleteProps<T, Multiple, DisableClearable, FreeSolo, ChipComponent>,
     "error" | "onChange" | "onBlur" | "value" | "renderInput"
 > & {
     control: Control<TFieldValues, TContext, TTransformedValues>;
@@ -32,14 +37,15 @@ export type RhfAutocompleteProps<
 
 const RhfAutocomplete = <
     T,
-    Multiple extends boolean | undefined,
-    DisableClearable extends boolean | undefined,
-    FreeSolo extends boolean | undefined,
+    Multiple extends boolean | undefined = false,
+    DisableClearable extends boolean | undefined = false,
+    FreeSolo extends boolean | undefined = false,
+    ChipComponent extends ElementType = ChipTypeMap["defaultComponent"],
     TFieldValues extends FieldValues = FieldValues,
     TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
     // biome-ignore lint/suspicious/noExplicitAny: defined by RHF
     TContext = any,
-    TTransformedValues = FieldValues,
+    TTransformedValues = TFieldValues,
 >({
     control,
     name,
@@ -55,6 +61,7 @@ const RhfAutocomplete = <
     Multiple,
     DisableClearable,
     FreeSolo,
+    ChipComponent,
     TFieldValues,
     TName,
     TContext,

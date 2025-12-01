@@ -5,6 +5,7 @@ import { fireEvent, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it } from "vitest";
 import { createInitTest } from "./initTest";
+import type { ChipTypeMap } from "@mui/material";
 
 type TestFormValues = {
     foo: string;
@@ -12,7 +13,7 @@ type TestFormValues = {
 
 const initTest = createInitTest<
     Omit<
-        RhfAutocompleteProps<string, false, false, false, TestFormValues>,
+        RhfAutocompleteProps<string, false, false, false, ChipTypeMap['defaultComponent'], TestFormValues>,
         "name" | "control" | "options"
     >,
     TestFormValues
@@ -32,7 +33,7 @@ const entityOptions = [
 
 const initEntitySingleTest = createInitTest<
     Omit<
-        RhfAutocompleteProps<Entity, false, false, false, TestFormValues>,
+        RhfAutocompleteProps<Entity, false, false, false, ChipTypeMap['defaultComponent'], TestFormValues>,
         "name" | "control" | "options"
     >,
     TestFormValues
@@ -42,7 +43,7 @@ const initEntitySingleTest = createInitTest<
 
 const initEntityMultipleTest = createInitTest<
     Omit<
-        RhfAutocompleteProps<Entity, true, false, false, TestFormValues>,
+        RhfAutocompleteProps<Entity, true, false, false, ChipTypeMap['defaultComponent'], TestFormValues>,
         "name" | "control" | "options"
     >,
     TestFormValues

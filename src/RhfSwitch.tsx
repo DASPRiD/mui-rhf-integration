@@ -9,7 +9,7 @@ export type RhfSwitchProps<
     TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
     // biome-ignore lint/suspicious/noExplicitAny: defined by RHF
     TContext = any,
-    TTransformedValues = FieldValues,
+    TTransformedValues = TFieldValues,
 > = Omit<SwitchProps, "checked" | "onChange" | "onBlur" | "value" | "ref"> & {
     control: Control<TFieldValues, TContext, TTransformedValues>;
     name: TName;
@@ -20,7 +20,7 @@ const RhfSwitch = <
     TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
     // biome-ignore lint/suspicious/noExplicitAny: defined by RHF
     TContext = any,
-    TTransformedValues = FieldValues,
+    TTransformedValues = TFieldValues,
 >({
     control,
     name,

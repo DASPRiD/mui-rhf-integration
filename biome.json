@@ -1,10 +1,8 @@
 {
-    "$schema": "https://biomejs.dev/schemas/1.9.2/schema.json",
-    "organizeImports": {
-        "enabled": true
-    },
+    "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+    "assist": { "actions": { "source": { "organizeImports": "on" } } },
     "files": {
-        "include": ["biome.json", "commitlint.config.cjs", "src/**/*", "test/**/*"]
+        "includes": ["./biome.json", "./commitlint.config.cjs", "./src/**/*"]
     },
     "linter": {
         "enabled": true,
@@ -15,24 +13,30 @@
                 "useSimplifiedLogicExpression": "error"
             },
             "correctness": {
-                "noNewSymbol": "error",
                 "noUnusedImports": "error",
                 "noUnusedPrivateClassMembers": "error",
-                "useHookAtTopLevel": "error"
+                "useHookAtTopLevel": "error",
+                "noInvalidBuiltinInstantiation": "error",
+                "noSwitchDeclarations": "error",
+                "noUnusedVariables": {
+                    "level": "error",
+                    "options": {
+                        "ignoreRestSiblings": true
+                    }
+                }
             },
             "style": {
                 "useBlockStatements": "error",
                 "useCollapsedElseIf": "error",
                 "useForOf": "error",
                 "useFragmentSyntax": "error",
-                "useShorthandArrayType": "error",
                 "useShorthandAssign": "error",
-                "useSingleCaseStatement": "error"
+                "useConsistentArrayType": { "level": "error", "options": { "syntax": "shorthand" } }
             },
             "suspicious": {
                 "noApproximativeNumericConstant": "warn",
-                "noConsoleLog": "error",
-                "noEmptyBlockStatements": "error"
+                "noEmptyBlockStatements": "error",
+                "noConsole": { "level": "error", "options": { "allow": ["error", "warn"] } }
             }
         }
     },
