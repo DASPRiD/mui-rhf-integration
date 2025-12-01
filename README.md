@@ -18,9 +18,9 @@ npm i mui-rhf-integration
 
 You'll need to have the following peer dependencies installed:
 
-- `react@^18`
-- `@mui/material@^6.0.0`
-- `react-hook-form@^7.29.0`
+- `react@^18.2|^19`
+- `@mui/material@^7.0.0`
+- `react-hook-form@^7.55.0`
 
 Note that in order to use the `RhfDatePicker`, `RhfDateTimePicker` and `RhfTimePicker` components you need to also
 install the `@mui/x-date-pickers` package.
